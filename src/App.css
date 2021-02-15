@@ -14,3 +14,17 @@
   float: right;
   margin: 16px 0 16px 24px;
 }
+
+.undone {
+  font-size: large;
+  
+
+}
+
+.done {
+  font-style: italic ;
+  font-size: medium ;
+  color: red;
+  text-decoration-line: line-through;
+  opacity: .33;
+}
