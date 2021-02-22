@@ -1,15 +1,24 @@
 import React from "react";
-import { List } from "antd";
+import { List, Button } from "antd";
+import {DeleteTwoTone} from '@ant-design/icons'
 
-//this is a function not a component
-function ToggleItemDone(item, todoListItems, setTodoListItems){
-    //need todoListItems
-    let updatedTodoList = JSON.parse(JSON.stringify(todoListItems))
-    //need the item that was clicked
-    const itemIndex = updatedTodoList.findIndex(todoItem => todoItem.item === item.item)
-    // for that item, set item.done=!item.done
-    updatedTodoList[itemIndex].done = !item.done
-    //update state with this new set of values
+function deleteTask(item, setResponseMessage){
+  return( 
+  fetch(`https://todo-bl-api.web.app/tasks/${item.id}`, {
+    method: 'DELETE'})
+    .then((result) => result.text())
+    .then((data) => {
+      data.statusCode < 300 ? setResponseMessage(data.message): console.log('error')
+    })
+    .catch((error) => console.log("error", error))
+  
+
+  )}
+
+function ToggleItemDone(item, todoListItems, setTodoListItems){    
+    let updatedTodoList = JSON.parse(JSON.stringify(todoListItems))   
+    const itemIndex = updatedTodoList.findIndex(todoItem => todoItem.item === item.item)    
+    updatedTodoList[itemIndex].done = !item.done  
     setTodoListItems(updatedTodoList)
 }
 
@@ -17,10 +26,12 @@ function ListItem({item, todoListItems, setTodoListItems}) {
     const thisClassName = item.done ? 'done' : 'undone'
     return (
     <List.Item 
+    dataSource={todoListItems}
     key={item.item}
     onClick={()=>ToggleItemDone(item, todoListItems, setTodoListItems)}
     className={thisClassName}>
-        {item.item}</List.Item>
+        {item.item}
+        <Button type="link" onClick={()=> deleteTask(item, todoListItems)} > <DeleteTwoTone/> </Button></List.Item>
     )                    
 }
 
@@ -35,6 +46,7 @@ function TodoList({todoListItems, setTodoListItems}) {
       renderItem={(item) => 
       <ListItem todoListItems={todoListItems} 
       setTodoListItems={setTodoListItems} item={item}/>}
+      
     />
   );
 }

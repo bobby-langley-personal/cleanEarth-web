@@ -1,25 +1,26 @@
-import React, { useState } from "react";
-import { Layout } from "antd";
-import NavBar from "../components/common/NavBar";
+import React, { useState, useEffect, useContext } from "react"
+import {UserContext} from '../App'
 import Head from "../components/home/Head";
 import TodoList from "../components/home/TodoList";
 
-const { Content, Footer } = Layout;
-
+//load to do list items on log in
+//figure out delete button
 function Home() {
-  const initialItems = JSON.parse(localStorage.getItem("todoList")) || [
-    { item: "Do this", done: false },
-    { item: "Do that", done: false },
-    { item: "Do the other", done: false },
-  ];
-  const [todoListItems, setTodoListItems] = useState(initialItems);
-
+  const [todoListItems, setTodoListItems] = useState([])
+  const { user } = useContext(UserContext)
+  useEffect(() => { 
+    if(user){
+  fetch("https://todo-bl-api.web.app/tasks/" + user.uid)
+  .then(res=> res.json())
+  .then(data => setTodoListItems(data))
+  .catch(e => console.log(e))
+    } else {
+      setTodoListItems([])
+    }
+}, [user])
   return (
     <>
-      <Layout className="layout">
-        <NavBar />
-        <Content style={{ padding: "0 50px" }}>
-          <div className="site-layout-content">
+     
             <Head
               todoListItems={todoListItems}
               setTodoListItems={setTodoListItems}
@@ -27,13 +28,10 @@ function Home() {
             <TodoList 
               todoListItems={todoListItems}
               setTodoListItems={setTodoListItems}
+              
             />
-          </div>
-        </Content>
-        <Footer style={{ textAlign: "center" }}>
-          ©2099 Created by some punk.
-        </Footer>
-      </Layout>
+                
+         
     </>
   );
 }
