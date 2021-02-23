@@ -1,7 +1,9 @@
 .site-layout-content {
   min-height: 280px;
   padding: 24px;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.75);
+  max-width: 600px;
+  margin: auto
 }
 #components-layout-demo-top .logo {
   float: left;
@@ -15,16 +17,31 @@
   margin: 16px 0 16px 24px;
 }
 
-.undone {
-  font-size: large;
-  
-
+.done {
+  text-decoration-line: line-through;
+  opacity: .4;
 }
 
-.done {
-  font-style: italic ;
-  font-size: medium ;
-  color: red;
-  text-decoration-line: line-through;
-  opacity: .33;
+body {
+  background-image: url('./assets/bigstock-Vector-abstract-background-com-40902397-768x562.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+.ant-layout {
+  background: none;
+}
+.ant-layout-footer{
+  color: black;
+  font-weight: 600;
+  background: none;
+}
+
+.ant-list-bordered{
+  border: 2px solid white
+}
+
+.ant-list-item {
+  cursor: pointer
 }

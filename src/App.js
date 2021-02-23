@@ -18,7 +18,7 @@ const firebaseAuth = firebase.auth()
 export const UserContext = createContext(null)
 
 function App() {
-  const [user, setUser] = useState(null)
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null)
   
   return (
     

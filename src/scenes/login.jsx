@@ -20,6 +20,7 @@ const tailLayout = {
   },
 };
 
+
 const Login = () => {
     const [error, setError] = useState(null)
     const [loading, setLoading] = useState(false)
@@ -38,14 +39,18 @@ const Login = () => {
       const loginWithGoogle = () => {
         setLoading(true)
         const provider = new firebase.auth.GoogleAuthProvider()
-        firebase.auth().signInWithPopup(provider)
-        .then(res =>{
-            setError(null)
-            setUser(res.user)
-            console.log(res.user)
-            setLoading(false)
-            history.push("/")  
-        })
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  .then(() => {
+    firebase.auth().signInWithPopup(provider)
+    .then(res =>{
+        setError(null)
+        setUser(res.user)
+        console.log(res.user)
+        setLoading(false)
+        localStorage.setItem('user', JSON.stringify(res.user))
+        history.push("/")  
+    })
+  })
         .catch(err=> {
           setLoading(false);
           setError(err.message)
@@ -117,6 +122,7 @@ const Login = () => {
       </Form.Item>
     </Form>
   );
+        
 };
 
 
