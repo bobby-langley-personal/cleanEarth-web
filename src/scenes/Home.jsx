@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import Head from "../components/home/Head";
-import TodoList from "../components/home/TodoList";
+import TodoList from "../components/home/EventList";
       
-//figure out delete button
+
 function Home() {
-  const [todoListItems, setTodoListItems] = useState([]);
+  const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(UserContext);
   useEffect(() => {
+    console.log(user)
     if (user) {
       setLoading(true);
-      fetch("https://todo-bl-api.web.app/tasks/" + user.uid)
+      fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events" )
         .then((res) => res.json())
         .then((data) => {
-          setTodoListItems(data);
+          setEvents(data); console.log('data', data)
           setLoading(false);
         })
         .catch((e) => {
@@ -22,19 +23,25 @@ function Home() {
           setLoading(false)
         });
     } else {
-      setTodoListItems([]);
+      setEvents([]);
       setLoading(false);
     }
   }, [user]);
+  console.log(events)
+  
   return (
+    
     <>
-      <Head setTodoListItems={setTodoListItems} setLoading={setLoading} />
+    
+      <Head setEvents={setEvents} setLoading={setLoading} />
       <TodoList
-        todoListItems={todoListItems}
-        setTodoListItems={setTodoListItems}
+        
+        events={events}
+        setEvents={setEvents}
         loading={loading}
         setLoading={setLoading}
-      />
+        />
+        
     </>
   );
 }

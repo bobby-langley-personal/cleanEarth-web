@@ -7,6 +7,7 @@ import Home from "./scenes/Home"
 import Login from "./scenes/login"
 import Signup from "./scenes/signup"
 import "./App.css";
+import EventForm from "./components/event/eventForm";
 const { Content, Footer } = Layout;
 const { firebaseConfig } = require('./config')
 
@@ -30,9 +31,11 @@ function App() {
         <Content style={{ padding: "0 50px" }}>
           <div className="site-layout-content">
             <Switch>
+              <Route path="/event-form" component={EventForm} />
               <Route path="/login" component={Login} />
               <Route path="/signup" component={Signup} />
               <Route path="/" component={Home} />
+
             </Switch>
           </div>
         </Content>
