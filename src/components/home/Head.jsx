@@ -6,10 +6,6 @@ const { Search } = Input;
 function Head({ setEvents, setLoading }) {
   const { user } = useContext(UserContext);
   
-
-  
-  
-
   const greeting = !user
     ? "Guest. Sign up or log in to use the app."
     : user.displayName || "User";

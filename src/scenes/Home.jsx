@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import Head from "../components/home/Head";
-import TodoList from "../components/home/EventList";
+import EventList from "../components/home/EventList";
+import EventDetails from '../components/event/eventDetailsPg'
       
 
 function Home() {
@@ -34,14 +35,20 @@ function Home() {
     <>
     
       <Head setEvents={setEvents} setLoading={setLoading} />
-      <TodoList
+      <EventList
         
         events={events}
         setEvents={setEvents}
         loading={loading}
         setLoading={setLoading}
         />
+        <EventDetails
+         events={events}
+         setEvents={setEvents}
+         loading={loading}
+         setLoading={setLoading}
         
+        />
     </>
   );
 }

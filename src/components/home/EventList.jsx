@@ -2,6 +2,9 @@ import React from "react";
 import { List, Button, Table, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
 import { DeleteTwoTone } from "@ant-design/icons";
+import EventDetails from '../event/eventDetailsPg'
+
+
 
 function deleteEvent(eventId, setLoading, setEvents) {
   setLoading(true);
@@ -25,10 +28,22 @@ function EventList({ events, setEvents, setLoading }) {
   console.log("events in todo list", events);
   const columns = [
     {
+      datasource: events,
       title: "Event Name",
       dataIndex: "eventName",
       key: "eventName",
-      render: (text) => <a>{text}</a>,
+      render: (text, event) => (
+        <Space size="middle">
+          
+          
+        </Space>
+      )
+    },
+    {
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+      
     },
     {
       title: "Location",

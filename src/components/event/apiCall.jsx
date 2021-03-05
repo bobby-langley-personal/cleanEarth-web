@@ -6,7 +6,8 @@ export const submitForm = (event, formValues, setResponseMessage, user) => {
 
   formValues.userId = user.uid
   formValues.createdBy = user.displayName
-  
+  formValues.hostedBy = user.displayName
+
   fetch(
     "https://us-central1-cleanearth-api.cloudfunctions.net/app/events/",
     {
