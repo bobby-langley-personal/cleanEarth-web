@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { submitForm } from "./apiCall";
 import { UserContext } from "../../App";
-import { DatePicker, TimePicker, Form, Space, Input, Button } from "antd";
+import { DatePicker, TimePicker, Form, Space, Input, Button, Cascader } from "antd";
 
 const showSuccess = (responseMessage) => {
   return alert(responseMessage);
@@ -12,6 +12,7 @@ console.log({submitForm})
 
 const EventForm = () => {
   const { user } = useContext(UserContext);
+  const [form] = Form.useForm()
   const [formValues, setFormValues] = useState({
     eventName: "",
     location: "",
@@ -35,6 +36,36 @@ const EventForm = () => {
     console.log({ time, timeString });
   
   }
+  const options = [
+    {
+      value: 'Sunny',
+      label: 'Sunny',
+    },
+    {
+      value: 'Rainy',
+      label: 'Rainy',
+    },
+    {
+      value: 'Overcast',
+      label: 'Overcast',
+    },
+    {
+      value: 'Hail',
+      label: 'Hail',
+    },
+    {
+      value: 'Thunderstorms',
+      label: 'Thunderstorms',
+    },
+    {
+      value: 'Snow',
+      label: 'Snow',
+    },
+    {
+      value: 'Not Applicable',
+      label: 'Not Applicable',
+    }
+  ]
 
   const [componentSize, setComponentSize] = useState("default");
 
@@ -53,6 +84,7 @@ const EventForm = () => {
       <h1>Create An Event</h1>
 
       <Form
+        form= {form}
         labelCol={{
           span: 4,
         }}
@@ -65,10 +97,12 @@ const EventForm = () => {
         }}
         onValuesChange={onFormLayoutChange}
         size={componentSize}
-        onFinish={(event) =>
+        
+        onFinish={(event) => {
+          form.resetFields()
           submitForm(event, formValues, setResponseMessage, user)
-          
         }
+      }
       >
         <Form.Item label="Event Name:">
           <Input
@@ -92,14 +126,20 @@ const EventForm = () => {
           />
         </Form.Item>
         <Form.Item label="Weather Forecast: ">
-          <Input
+          {/* <Input
             name="weather"
             type="text"
             value={formValues.weather}
             onChange={(e) =>
               setFormValues({ ...formValues, weather: e.target.value })
             }
-          />
+          /> */}
+           <Cascader style={{ width: '70%' }} options={options} placeholder="Weather Forecast" 
+           
+           onChange={(e) =>
+             setFormValues({ ...formValues, weather: e.target.value })
+           }
+             />
         </Form.Item>
         <Form.Item label="Address: ">
           <Input
@@ -137,5 +177,6 @@ const EventForm = () => {
     </>
   );
 };
+
 
 export default EventForm;

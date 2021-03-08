@@ -6,8 +6,8 @@ import EventDetails from '../event/eventDetailsPg'
 
 
 
-function deleteEvent(eventId, setLoading, setEvents) {
-  setLoading(true);
+export function deleteEvent(eventId, setLoading, setEvents) {
+  setLoading(true)
   const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${eventId}`;
   const params = {
     method: "DELETE",
@@ -16,11 +16,11 @@ function deleteEvent(eventId, setLoading, setEvents) {
     .then((res) => res.json())
     .then((data) => {
       setEvents(data);
-      setLoading(false);
+      setLoading(false)
     })
     .catch((err) => {
       console.log("error updating item: ", err);
-      setLoading(false);
+      setLoading(false)
     });
 }
 
@@ -34,12 +34,12 @@ function EventList({ events, setEvents, setLoading }) {
       key: "eventName",
 
       render: (text, event) => (
-        <Space size="middle">
-          <Button> 
-            <Link to={'/event/' + event.id} > name </Link>
-          </Button>
+        
+        
+            <a href={'/event/' + event.id} > {event.eventName} </a>
+          
 
-        </Space>
+       
       )
     },
     {

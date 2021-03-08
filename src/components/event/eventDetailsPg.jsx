@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { List, Button, Table, Tag, Space } from "antd";
 import { Link } from "react-router-dom";
+import {deleteEvent} from '../home/EventList'
 
 
 
@@ -32,8 +33,29 @@ export default function EventDetails(props) {
 
 
   return (
+    <>
     <div> 
-      {event.eventName}
+      {event.startTime} {event.endTime} |||||| &nbsp;
+      {event.date}
     </div>
+    <div> 
+      {event.eventName} 
+      <Button onClick={() => deleteEvent(event.id)}>
+            Delete
+          </Button>
+    </div>
+    <div> 
+      {event.location}
+    </div>
+    <div> 
+      {event.weather}
+    </div>
+    <div> 
+      Address: {event.address}
+    </div>
+    <div> 
+      {event.description}
+    </div>
+    </>
   );
 }

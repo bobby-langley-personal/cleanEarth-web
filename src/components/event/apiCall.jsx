@@ -25,5 +25,5 @@ export const submitForm = (event, formValues, setResponseMessage, user) => {
         : console.log("error");
     })
     .catch((error) => console.log("error", error));
-  event.preventDefault();
+  // event.preventDefault();
 };
