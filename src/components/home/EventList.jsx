@@ -32,10 +32,13 @@ function EventList({ events, setEvents, setLoading }) {
       title: "Event Name",
       dataIndex: "eventName",
       key: "eventName",
+
       render: (text, event) => (
         <Space size="middle">
-          
-          
+          <Button> 
+            <Link to={'/event/' + event.id} > name </Link>
+          </Button>
+
         </Space>
       )
     },
@@ -43,7 +46,7 @@ function EventList({ events, setEvents, setLoading }) {
       title: "Description",
       dataIndex: "description",
       key: "description",
-      
+
     },
     {
       title: "Location",
@@ -71,7 +74,7 @@ function EventList({ events, setEvents, setLoading }) {
       <Table columns={columns} dataSource={events} />
       <Button> <Link to='/event-form' > create form </Link>
       </Button>
-      
+
     </>
   );
 }

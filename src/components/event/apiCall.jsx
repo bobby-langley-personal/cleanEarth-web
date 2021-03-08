@@ -9,7 +9,7 @@ export const submitForm = (event, formValues, setResponseMessage, user) => {
   formValues.hostedBy = user.displayName
 
   fetch(
-    "https://us-central1-cleanearth-api.cloudfunctions.net/app/events/",
+    "https://us-central1-cleanearth-api.cloudfunctions.net/app/events",
     {
       method: "POST",
       headers: {

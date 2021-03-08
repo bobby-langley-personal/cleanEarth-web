@@ -1,27 +1,39 @@
-import React, { useState } from "react";
-import { Modal, Button } from "antd";
-import { List } from "antd";
+import React, { useEffect, useState } from "react";
+import { List, Button, Table, Tag, Space } from "antd";
+import { Link } from "react-router-dom";
 
-function showSingleEvent(event, setEvents, setLoading) {
-  fetch(
-    "https://us-central1-cleanearth-api.cloudfunctions.net/app/events/" + event
-  )
-    .then((res) => res.json())
-    .then((data) => {
-      setEvents(data);
-      console.log("data", data);
-      setLoading(false);
-    })
-    .catch((e) => {
-      console.log(e);
-      setLoading(false);
-    });
-}
 
-export default function EventDetails({ event, setEvents, setLoading }) {
+
+export default function EventDetails(props) {
+  const [event, setEvent] = useState([])
+  // const {eventId} = props.match.params.eventId
+
+  console.log(props.match.params.eventId)
+  console.log("propsss", props.match.params.eventId)
+
+  useEffect(() => {
+    fetch(
+      "https://us-central1-cleanearth-api.cloudfunctions.net/app/event/" + props.match.params.eventId
+    )
+      .then((res) => res.json())
+      .then((x) => setEvent(x))
+
+      .catch((e) => {
+        console.log(e);
+        // setLoading(false);
+      });
+
+      console.log('this is event', event)
+  }, [])
+
+
+
+  
+
+
   return (
-    <>
-      <div>test</div>
-    </>
+    <div> 
+      {event.eventName}
+    </div>
   );
 }

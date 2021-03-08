@@ -7,6 +7,9 @@ const showSuccess = (responseMessage) => {
   return alert(responseMessage);
 };
 
+// console.log({responseMessage})
+console.log({submitForm})
+
 const EventForm = () => {
   const { user } = useContext(UserContext);
   const [formValues, setFormValues] = useState({
@@ -62,8 +65,9 @@ const EventForm = () => {
         }}
         onValuesChange={onFormLayoutChange}
         size={componentSize}
-        onSubmit={(event) =>
+        onFinish={(event) =>
           submitForm(event, formValues, setResponseMessage, user)
+          
         }
       >
         <Form.Item label="Event Name:">
@@ -123,11 +127,12 @@ const EventForm = () => {
         <Form.Item label="Date">
           <DatePicker onChange={dateNight} />
         </Form.Item>
-        
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-       
+        <Form.Item>
+        <Button type="primary" htmlType="submit"> 
+        Submit 
+        </Button>
+
+          </Form.Item>
       </Form>
     </>
   );

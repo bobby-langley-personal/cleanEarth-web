@@ -2,8 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import Head from "../components/home/Head";
 import EventList from "../components/home/EventList";
-import EventDetails from '../components/event/eventDetailsPg'
-      
+
 
 function Home() {
   const [events, setEvents] = useState([]);
@@ -13,7 +12,7 @@ function Home() {
     console.log(user)
     if (user) {
       setLoading(true);
-      fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events" )
+      fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events")
         .then((res) => res.json())
         .then((data) => {
           setEvents(data); console.log('data', data)
@@ -29,26 +28,19 @@ function Home() {
     }
   }, [user]);
   console.log(events)
-  
+
   return (
-    
+
     <>
-    
+
       <Head setEvents={setEvents} setLoading={setLoading} />
       <EventList
-        
         events={events}
         setEvents={setEvents}
         loading={loading}
         setLoading={setLoading}
-        />
-        <EventDetails
-         events={events}
-         setEvents={setEvents}
-         loading={loading}
-         setLoading={setLoading}
-        
-        />
+      />
+      
     </>
   );
 }
