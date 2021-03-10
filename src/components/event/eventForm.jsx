@@ -1,78 +1,61 @@
 import React, { useEffect, useState, useContext } from "react";
-import { submitForm } from "./apiCall";
+import { useParams, useHistory } from "react-router-dom";
+import { getSingleEvent, submitForm } from "./apiCall";
 import { UserContext } from "../../App";
-import { DatePicker, TimePicker, Form, Space, Input, Button, Cascader } from "antd";
+import {
+  DatePicker,
+  TimePicker,
+  Form,
+  Space,
+  Input,
+  Button,
+  Cascader,
+  Row,
+} from "antd";
 
 const showSuccess = (responseMessage) => {
   return alert(responseMessage);
 };
 
 // console.log({responseMessage})
-console.log({submitForm})
+console.log({ submitForm });
 
 const EventForm = () => {
-  const { user } = useContext(UserContext);
-  const [form] = Form.useForm()
-  const [formValues, setFormValues] = useState({
-    eventName: "",
-    location: "",
-    hostedBy: "",
-    weather: "",
-    address: "",
-    date: "",
-    startTime: "",
-    endTime: "",
-    description: "",
-    userId: null,
-    createdBy: null,
-  });
-  function dateNight(date, dateString) {
-    setFormValues({ ...formValues, date: dateString });
-    console.log({ date, dateString });
-  }
-  const { RangePicker } = TimePicker;
-  function startEndTime(time, timeString) {
-    setFormValues({ ...formValues, startTime: timeString[0], endTime: timeString[1] });
-    console.log({ time, timeString });
-  
-  }
-  const options = [
-    {
-      value: 'Sunny',
-      label: 'Sunny',
-    },
-    {
-      value: 'Rainy',
-      label: 'Rainy',
-    },
-    {
-      value: 'Overcast',
-      label: 'Overcast',
-    },
-    {
-      value: 'Hail',
-      label: 'Hail',
-    },
-    {
-      value: 'Thunderstorms',
-      label: 'Thunderstorms',
-    },
-    {
-      value: 'Snow',
-      label: 'Snow',
-    },
-    {
-      value: 'Not Applicable',
-      label: 'Not Applicable',
-    }
-  ]
-
-  const [componentSize, setComponentSize] = useState("default");
-
-  const onFormLayoutChange = ({ size }) => {
-    setComponentSize(size);
-  };
+  const [form] = Form.useForm();
+  const [event, setEvent] = useState(undefined);
   const [responseMessage, setResponseMessage] = useState(undefined);
+  const { user } = useContext(UserContext);
+  const { mode, id } = useParams();
+  const history = useHistory();
+
+  const [fields, setFields] = useState();
+
+  useEffect(() => {
+    if (mode === "update") {
+      getSingleEvent(id, setEvent);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (mode === "update") {
+      form.setFieldsValue(event);
+    }
+  }, [event]);
+
+  // function dateNight(date, dateString) {
+  //   setFormValues({ ...formValues, date: dateString });
+  //   console.log({ date, dateString });
+  // }
+  const { RangePicker } = TimePicker;
+  // function startEndTime(time, timeString) {
+  //   setFormValues({
+  //     ...formValues,
+  //     startTime: timeString[0],
+  //     endTime: timeString[1],
+  //   });
+  //   console.log({ time, timeString });
+  // }
+
   console.log("response message", responseMessage);
 
   useEffect(() => {
@@ -81,10 +64,8 @@ const EventForm = () => {
 
   return (
     <>
-      <h1>Create An Event</h1>
-
       <Form
-        form= {form}
+        form={form}
         labelCol={{
           span: 4,
         }}
@@ -92,91 +73,52 @@ const EventForm = () => {
           span: 14,
         }}
         layout="horizontal"
-        initialValues={{
-          size: componentSize,
-        }}
-        onValuesChange={onFormLayoutChange}
-        size={componentSize}
-        
+        className="site-layout-content"
+        fields={fields}
+        onFieldsChange={(changedFields, allFields) => setFields(allFields)}
         onFinish={(event) => {
-          form.resetFields()
-          submitForm(event, formValues, setResponseMessage, user)
-        }
-      }
+          submitForm(
+            event,
+            fields,
+            setResponseMessage,
+            user,
+            history,
+            mode,
+            id
+          );
+        }}
       >
-        <Form.Item label="Event Name:">
-          <Input
-            name="eventName"
-            type="text"
-            value={formValues.eventName}
-            onChange={(e) =>
-              setFormValues({ ...formValues, eventName: e.target.value })
-            }
-          />
+        <h1 style={{ textAlign: "center" }}>Event Details</h1>
+        <Form.Item label="Event Name:" name="eventName">
+          <Input />
         </Form.Item>
 
-        <Form.Item label="Location:">
-          <Input
-            name="location"
-            type="text"
-            value={formValues.location}
-            onChange={(e) =>
-              setFormValues({ ...formValues, location: e.target.value })
-            }
-          />
+        <Form.Item label="Location:" name="location">
+          <Input />
         </Form.Item>
-        <Form.Item label="Weather Forecast: ">
-          {/* <Input
-            name="weather"
-            type="text"
-            value={formValues.weather}
-            onChange={(e) =>
-              setFormValues({ ...formValues, weather: e.target.value })
-            }
-          /> */}
-           <Cascader style={{ width: '70%' }} options={options} placeholder="Weather Forecast" 
-           
-           onChange={(e) =>
-             setFormValues({ ...formValues, weather: e.target.value })
-           }
-             />
-        </Form.Item>
-        <Form.Item label="Address: ">
-          <Input
-            name="address"
-            type="text"
-            value={formValues.address}
-            onChange={(e) =>
-              setFormValues({ ...formValues, address: e.target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item label="Description: ">
-          <Input.TextArea
-            name="description"
-            type="text"
-            value={formValues.description}
-            onChange={(e) =>
-              setFormValues({ ...formValues, description: e.target.value })
-            }
-          />
-        </Form.Item>
-        <Form.Item>
-          <RangePicker label="StartEnd" onChange={startEndTime} />
-        </Form.Item>
-        <Form.Item label="Date">
-          <DatePicker onChange={dateNight} />
-        </Form.Item>
-        <Form.Item>
-        <Button type="primary" htmlType="submit"> 
-        Submit 
-        </Button>
 
-          </Form.Item>
+        <Form.Item label="Address: " name="address">
+          <Input/>
+        </Form.Item>
+        <Form.Item label="Description: " name="description">
+          <Input.TextArea/>
+        </Form.Item>
+        <Form.Item label="Time: " name="time">
+          <RangePicker label="StartEnd" /*onChange={startEndTime}*/ />
+        </Form.Item>
+        <Form.Item label="Date" time="date">
+          <DatePicker /*onChange={dateNight}*/ />
+        </Form.Item>
+        <Form.Item>
+          <Row justify="end">
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Row>
+        </Form.Item>
       </Form>
     </>
   );
 };
-
 
 export default EventForm;

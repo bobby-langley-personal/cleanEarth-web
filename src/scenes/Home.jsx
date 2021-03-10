@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import Head from "../components/home/Head";
 import EventList from "../components/home/EventList";
+import { Col, Row } from "antd";
 
 
 function Home() {
@@ -34,12 +35,17 @@ function Home() {
     <>
 
       <Head setEvents={setEvents} setLoading={setLoading} />
-      <EventList
+      <Row justify="space-around" >
+      <Col span={20} >
+        <EventList  
         events={events}
         setEvents={setEvents}
         loading={loading}
         setLoading={setLoading}
       />
+      </Col>
+      </Row>
+      
       
     </>
   );

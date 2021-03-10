@@ -5,6 +5,12 @@
   max-width: 600px;
   margin: auto
 }
+
+.eventHeader {
+  background: grey
+
+}
+
 #components-layout-demo-top .logo {
   float: left;
   width: 120px;
@@ -23,9 +29,8 @@
 }
 
 body {
-  background-image: url('./assets/bigstock-Vector-abstract-background-com-40902397-768x562.jpg');
+  background-image: url('./assets/pexels-aistė-sveikataitė-1535421.jpg');
   background-position: center center;
-  background-repeat: no-repeat;
   background-size: cover;
 
 }

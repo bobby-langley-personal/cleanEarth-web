@@ -1,7 +1,7 @@
 import React, { useState, createContext } from "react"
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import firebase from 'firebase'
-import { Layout } from "antd";
+import { Col, Layout, Row } from "antd";
 import NavBar from "./components/common/NavBar";
 import Home from "./scenes/Home"
 import Login from "./scenes/login"
@@ -27,18 +27,21 @@ function App() {
         <Router>
           <Layout className="layout">
             <NavBar />
+            <Row justify="space-around" >
+              <Col span={24} >
             <Content style={{ padding: "0 50px" }}>
-              <div className="site-layout-content">
+              {/* <div className="site-layout-content"> */}
                 <Switch>
                   <Route path="/event/:eventId" component={EventDetails} />
-                  <Route path="/event-form" component={EventForm} />
+                  <Route path="/event-form/:mode/:id?" component={EventForm} />
                   <Route path="/login" component={Login} />
                   <Route path="/signup" component={Signup} />
                   <Route path="/" component={Home} />
-
                 </Switch>
-              </div>
+              {/* </div> */}
             </Content>
+              </Col>
+            </Row>
             <Footer style={{ textAlign: "center" }}>
               ©2021 Created with love and support from Boca Code 
         </Footer>

@@ -1,5 +1,5 @@
 import React from "react";
-import { List, Button, Table, Tag, Space } from "antd";
+import { List, Button, Table, Tag, Space, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import { DeleteTwoTone } from "@ant-design/icons";
 import EventDetails from '../event/eventDetailsPg'
@@ -70,10 +70,15 @@ function EventList({ events, setEvents, setLoading }) {
   ];
 
   return (
+    
     <>
+    <Row justify="space-around" >
+    <Col span={20} >
       <Table columns={columns} dataSource={events} />
-      <Button> <Link to='/event-form' > create form </Link>
+      <Button> <Link to='/event-form/create/'> Create New Event </Link>
       </Button>
+     </Col>
+     </Row>
 
     </>
   );
