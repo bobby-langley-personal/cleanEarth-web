@@ -2,16 +2,11 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getSingleEvent, submitForm } from "./apiCall";
 import { UserContext } from "../../App";
-import {
-  DatePicker,
-  TimePicker,
-  Form,
-  Space,
-  Input,
-  Button,
-  Cascader,
-  Row,
-} from "antd";
+import { DatePicker, TimePicker, Form, Space, Input, Button, Row, Spin } from "antd";
+import moment from "moment";
+import { LoadingOutlined } from "@ant-design/icons";
+
+const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 const showSuccess = (responseMessage) => {
   return alert(responseMessage);
@@ -23,6 +18,7 @@ console.log({ submitForm });
 const EventForm = () => {
   const [form] = Form.useForm();
   const [event, setEvent] = useState(undefined);
+  const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState(undefined);
   const { user } = useContext(UserContext);
   const { mode, id } = useParams();
@@ -42,21 +38,17 @@ const EventForm = () => {
     }
   }, [event]);
 
-  // function dateNight(date, dateString) {
-  //   setFormValues({ ...formValues, date: dateString });
-  //   console.log({ date, dateString });
-  // }
   const { RangePicker } = TimePicker;
   // function startEndTime(time, timeString) {
   //   setFormValues({
   //     ...formValues,
-  //     startTime: timeString[0],
-  //     endTime: timeString[1],
+  // startTime: moment(timeString[0]).format("h:mm"),
+  // endTime: timeString[1],
   //   });
   //   console.log({ time, timeString });
   // }
 
-  console.log("response message", responseMessage);
+  // console.log("response message", responseMessage);
 
   useEffect(() => {
     if (responseMessage !== undefined) showSuccess(responseMessage);
@@ -77,17 +69,8 @@ const EventForm = () => {
         fields={fields}
         onFieldsChange={(changedFields, allFields) => setFields(allFields)}
         onFinish={(event) => {
-          submitForm(
-            event,
-            fields,
-            setResponseMessage,
-            user,
-            history,
-            mode,
-            id
-          );
-        }}
-      >
+          submitForm(event, fields, setResponseMessage, user, history, mode, id, setLoading);
+        }}>
         <h1 style={{ textAlign: "center" }}>Event Details</h1>
         <Form.Item label="Event Name:" name="eventName">
           <Input />
@@ -98,20 +81,21 @@ const EventForm = () => {
         </Form.Item>
 
         <Form.Item label="Address: " name="address">
-          <Input/>
+          <Input />
         </Form.Item>
         <Form.Item label="Description: " name="description">
-          <Input.TextArea/>
+          <Input.TextArea />
         </Form.Item>
-        <Form.Item label="Time: " name="time">
-          <RangePicker label="StartEnd" /*onChange={startEndTime}*/ />
+        <Form.Item label="Time: " name="startEndTime">
+          <RangePicker />
         </Form.Item>
-        <Form.Item label="Date" time="date">
-          <DatePicker /*onChange={dateNight}*/ />
+        <Form.Item label="Date" name="date">
+          <DatePicker />
         </Form.Item>
         <Form.Item>
           <Row justify="end">
             <Button type="primary" htmlType="submit">
+            {loading && <Spin indicator={antIcon} />}
               Submit
             </Button>
           </Row>

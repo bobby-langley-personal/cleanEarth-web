@@ -19,19 +19,13 @@ function Head({ setEvents, setLoading }) {
         }
       />
     ) : (
-      <Avatar size={36} src={user.photoURL} />
+      <Avatar size={24} src={user.photoURL} />
     );
   return (
-    <header style={{ textAlign: "center", paddingBottom: "40px" }}>
-      <h1>
-        {" "}
-        Welcome, {greeting} {userImage}{" "}
-      </h1>
-
-      
         
-      
-    </header>
+  <>
+  </>      
+   
   );
 }
 

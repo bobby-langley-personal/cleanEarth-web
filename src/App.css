@@ -7,8 +7,39 @@
 }
 
 .eventHeader {
-  background: grey
+  flex: auto;
+  float: center;
+  background: rgba(255, 255, 255, .9);
+  max-width: 600px;
+  margin: auto;
+  height: auto
+}
+.eventSider {
+  flex: auto;
+  float: right;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, .9);
+  margin: auto;
+  padding: 24px;
+  display: flex;
+  width: max-content
+  
+}
+h2.ant-typography, .ant-typography h2 {
+  margin-bottom: 0.5em;
+  color: rgba(0, 0, 0, 0.85);
+  font-weight: 600;
+  font-size: 30px;
+  line-height: .1;
+} 
 
+.eventContent {
+  min-height: 280px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.75);
+  width: auto;
+  margin: auto;
+  
 }
 
 #components-layout-demo-top .logo {
@@ -29,7 +60,7 @@
 }
 
 body {
-  background-image: url('./assets/pexels-aistė-sveikataitė-1535421.jpg');
+  
   background-position: center center;
   background-size: cover;
 
@@ -37,6 +68,25 @@ body {
 .ant-layout {
   background: none;
 }
+.ant-layout-header {
+  height: 64px;
+  padding: 0 50px;
+  line-height: 64px;
+  background: transparent;
+
+}
+.ant-menu-root.ant-menu-vertical, .ant-menu-root.ant-menu-vertical-left, .ant-menu-root.ant-menu-vertical-right, .ant-menu-root.ant-menu-inline{
+  height: 100% !important;
+}
+.ant-layout-sider {
+  position: relative;
+  min-width: 0;
+  height: inherit ;
+  background: transparent; 
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
 .ant-layout-footer{
   color: black;
   font-weight: 600;
@@ -49,4 +99,10 @@ body {
 
 .ant-list-item {
   cursor: pointer
+}
+
+.buttonRight {
+  float: right;
+  padding: 2px;
+  border: 2px
 }
