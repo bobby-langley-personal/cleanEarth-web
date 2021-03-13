@@ -15,7 +15,7 @@ function Head({ setEvents, setLoading }) {
       <Avatar
         size={36}
         src={
-          "http://cdn.shopify.com/s/files/1/1061/1924/products/Poop_Emoji_7b204f05-eec6-4496-91b1-351acc03d2c7_grande.png?v=1571606036"
+          "%PUBLIC_URL%/tomFromMyspace.jpg"
         }
       />
     ) : (

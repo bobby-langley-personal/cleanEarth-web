@@ -11,8 +11,13 @@ import EventForm from "./components/event/eventForm";
 import EventDetails from "./components/event/eventDetailsPg";
 import SiderMenu from "./components/common/Sider";
 import Title from "antd/lib/typography/Title";
+import UserEventList from "./components/event/userEvents";
+import Userpage from "./scenes/userPage";
 const { Content, Footer, Header } = Layout;
 const { firebaseConfig } = require("./config");
+
+
+
 
 firebase.initializeApp(firebaseConfig);
 const firebaseAuth = firebase.auth();
@@ -39,6 +44,8 @@ function App() {
                     <Switch>
                       <Route path="/event/:eventId" component={EventDetails} />
                       <Route path="/event-form/:mode/:id?" component={EventForm} />
+                      <Route path="/user-events/" component={UserEventList} />
+                      <Route path="/user/" component={Userpage} />
                       <Route path="/login" component={Login} />
                       <Route path="/signup" component={Signup} />
                       <Route path="/" component={Home} />

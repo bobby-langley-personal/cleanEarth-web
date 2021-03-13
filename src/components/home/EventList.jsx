@@ -1,11 +1,14 @@
-import React from "react";
-import { List, Button, Table, Tag, Space, Row, Col } from "antd";
-import { Link } from "react-router-dom";
-import { DeleteTwoTone } from "@ant-design/icons";
+import React, { useContext, useState } from "react";
+import { List, Button, Table, Tag, Space, Row, Col, Typography, Image } from "antd";
+import { Link, useHistory } from "react-router-dom";
+import { DeleteTwoTone, MailOutlined } from "@ant-design/icons";
 import EventDetails from "../event/eventDetailsPg";
+import { UserContext } from "../../App";
 import moment from "moment";
 
-export function deleteEvent(eventId, setLoading, setEvents) {
+const {Title} = Typography
+
+export function deleteEvent(eventId, setLoading, setEvents, history) {
   setLoading(true);
   const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${eventId}`;
   const params = {
@@ -14,8 +17,9 @@ export function deleteEvent(eventId, setLoading, setEvents) {
   fetch(API_URL, params)
     .then((res) => res.json())
     .then((data) => {
-      setEvents(data);
-      setLoading(false);
+      setEvents(data)
+      setLoading(false)
+     return history.push("/user-events")
     })
     .catch((err) => {
       console.log("error updating item: ", err);
@@ -24,8 +28,9 @@ export function deleteEvent(eventId, setLoading, setEvents) {
 }
 
 function EventList({ events, setEvents, setLoading }) {
-  console.log("events in todo list", events);
-  
+  const [favoritesList, setFavoritesList] = useState([]);
+  let history = useHistory() 
+  const { user } = useContext(UserContext);
   const columns = [
     {
       datasource: events,
@@ -33,13 +38,20 @@ function EventList({ events, setEvents, setLoading }) {
       dataIndex: "eventName",
       key: "eventName",
 
-      render: (text, event) => <a href={"/event/" + event.id}> {event.eventName} </a>,
+      render: (text, event) => <Link to={"/event/" + event.id}>  {event.eventName}</Link>,
+      
     },
     {
       title: "Date",
       dataIndex: "date",
       key: "date",
-      render: (text, event) =>  moment(event.date).format("MMMM, Do YYYY")
+      render: (text, event) => moment(event.date).format("MMMM, Do YYYY"),
+
+      filterMultiple: false,
+      onFilter: (value, record) => record.date.indexOf(value) === 0,
+      defaultSortOrder: "ascend",
+      sorter: (a, b) => moment(a.date) - moment(b.date),
+      sortDirections: ["descend", "ascend"],
     },
     {
       title: "Location",
@@ -47,14 +59,25 @@ function EventList({ events, setEvents, setLoading }) {
       key: "location",
     },
     {
+      title: "Hosted By",
+      dataIndex: "hostedBy",
+      key: "hostedBy",
+      filterMultiple: false,
+      onFilter: (value, record) => record.hostedBy.indexOf(value) === 0,
+      sorter: (a, b) => a.hostedBy.length - b.hostedBy.length,
+      sortDirections: ['ascend'],
+    },
+    {
       datasource: events,
-      title: "Action",
+      title: "",
       key: "action",
 
       render: (text, event) => (
         <Space size="middle">
-          <Link>Invite </Link>
-          <Button onClick={() => deleteEvent(event.id, setLoading, setEvents)}>Delete</Button>
+          <Link> <MailOutlined /> </Link>
+          <Link to={"/event/" + event.id}> More </Link>
+          
+          {/* {user.uid === event.userId && <Button onClick={() => deleteEvent(event.id, setLoading, setEvents, history)}>Delete</Button>} */}
         </Space>
       ),
     },
@@ -62,10 +85,11 @@ function EventList({ events, setEvents, setLoading }) {
 
   return (
     <>
+    
       <Row justify="space-around">
         <Col span={20}>
+        <Title level={3}> &nbsp; All Events </Title>
           <Table columns={columns} dataSource={events} />
-          
         </Col>
       </Row>
     </>

@@ -14,6 +14,7 @@ import {
   BarsOutlined,
 } from "@ant-design/icons";
 const { Sider } = Layout;
+const { SubMenu } = Menu;
 
 function SiderMenu() {
   const { user, setUser, firebaseAuth } = useContext(UserContext);
@@ -26,30 +27,31 @@ function SiderMenu() {
       })
       .catch((error) => console.log(error));
   }
+  const userImage =
+    !user || !user.photoURL ? (
+      <Avatar size={36} src={"https://pbs.twimg.com/profile_images/1237550450/mstom_400x400.jpg"} />
+    ) : (
+      <Avatar size={24} src={user.photoURL} />
+    );
   return (
     <Sider className="ant-layout-sider">
       <div />
-      <Menu mode="inline" defaultSelectedKeys={["1"]} >
+      <Menu mode="inline" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<HomeOutlined />}>
           <Link to="/">Home</Link>
         </Menu.Item>
         <Menu.Item key="2" icon={<BarsOutlined />}>
           <Link to="/events">All Events</Link>
         </Menu.Item>
-        <Menu.Item key="3" icon={<HomeOutlined />}>
-          <Link to="/">Your Events</Link>
-        </Menu.Item>
-        <Menu.Item key="4" icon={<HomeOutlined />}>
-          <Link to="/event-form/create">Create New Event</Link>
-        </Menu.Item>
         <Divider />
-        <Menu.Item key="5" icon={<SettingOutlined />}>
-          nav 3
+        <Menu.Item key="3" icon={<UserOutlined />}>
+          <Link to="/user/">Profile Page</Link>
         </Menu.Item>
+
         <Divider />
         {user ? (
           <Menu.Item key="6" onClick={() => signOut()}>
-            {<Avatar size={36} src={user.photoURL} />} Logout
+            {<Avatar size={36} src={userImage} />} Logout
           </Menu.Item>
         ) : (
           <>

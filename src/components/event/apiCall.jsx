@@ -1,4 +1,7 @@
 export const submitForm = (event, fields, setResponseMessage, user, history, mode, id, setLoading) => {
+
+  const formPrompt = document.getElementById("formPrompt")
+  formPrompt.innerText="Form Submitted"
   const callEndpoint =
     mode === "update"
       ? `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${id}`
@@ -15,7 +18,7 @@ export const submitForm = (event, fields, setResponseMessage, user, history, mod
   if (!user) {
     return null;
   }
-
+  formValues.userPhoto=user.photoURL;
   formValues.userId = user.uid;
   formValues.createdBy = user.displayName;
   formValues.hostedBy = user.displayName;
@@ -34,12 +37,16 @@ export const submitForm = (event, fields, setResponseMessage, user, history, mod
       
         setLoading(false);
         console.log({ data });
-        return history.push(`/event-form/update/${data.event.id}`);
+        if(callMethod === 'PATCH'){
+        return history.push(`/event-form/update/${data.event.id}`) /*&& formPrompt*/
+        } else {
+          return history.push("/") /*&& formPrompt*/
+        }
         // setResponseMessage(data.message);
       
     })
     .catch(() => setLoading(false));
-  // event.preventDefault();
+  event.preventDefault();
 };
 
 export function getSingleEvent(id, setEvent) {

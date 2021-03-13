@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import firebase from "firebase";
+import FacebookLogin from "react-facebook-login";
 import { useHistory } from "react-router-dom";
 import { Form, Input, Button, Checkbox, Typography } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
@@ -18,6 +19,13 @@ const tailLayout = {
     offset: 8,
     span: 16,
   },
+};
+const responseFacebook = (response) => {
+  console.log(response);
+};
+
+const componentClicked = () => {
+  console.log("Clicked!");
 };
 
 const Login = () => {
@@ -112,6 +120,9 @@ const Login = () => {
         <Button type="primary" icon={<GoogleOutlined />} loading={loading} onClick={() => loginWithGoogle()}>
           Continue with Google
         </Button>
+      </Form.Item>
+      <Form.Item>
+        {/* <FacebookLogin appId="426859725081972" autoLoad={true} fields="name,email,picture" onClick={componentClicked} callback={responseFacebook} /> */}
       </Form.Item>
     </Form>
   );

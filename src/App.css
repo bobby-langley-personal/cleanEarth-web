@@ -73,6 +73,7 @@ body {
   padding: 0 50px;
   line-height: 64px;
   background: transparent;
+  background: #f7f7f8
 
 }
 .ant-menu-root.ant-menu-vertical, .ant-menu-root.ant-menu-vertical-left, .ant-menu-root.ant-menu-vertical-right, .ant-menu-root.ant-menu-inline{
@@ -85,12 +86,14 @@ body {
   background: transparent; 
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  background: #f7f7f8
 }
 
 .ant-layout-footer{
   color: black;
   font-weight: 600;
   background: none;
+  background: #f7f7f8
 }
 
 .ant-list-bordered{
@@ -103,6 +106,5 @@ body {
 
 .buttonRight {
   float: right;
-  padding: 2px;
   border: 2px
 }
