@@ -5,6 +5,7 @@ import { UserContext } from "../../App";
 import { DatePicker, TimePicker, Form, Input, Button, Row, Spin } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import moment from "moment";
+import Title from "antd/lib/typography/Title";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
@@ -78,7 +79,7 @@ const EventForm = () => {
         onFinish={(event) => {
           submitForm(event, fields, setResponseMessage, user, history, mode, id, setLoading);
         }}>
-        <h1 style={{ textAlign: "center" }}>Event Details</h1>
+        <Title level={3} >Event Details</Title><br/>
         <Form.Item label="Event Name:" name="eventName" rules={[
           {
             required: true,
@@ -97,7 +98,20 @@ const EventForm = () => {
           <Input />
         </Form.Item>
 
-        <Form.Item label="Address: " name="address" >
+        <Form.Item label="Address: " name="address" rules={[
+          {
+            required: true,
+            message: 'Please input a valid address.',
+          },
+        ]}>
+          <Input/>
+          </Form.Item>
+        <Form.Item label="Contact: " name="contactInfo" rules={[
+          {
+            required: true,
+            message: 'Please add a contact for volunteers to connect with you.',
+          },
+        ]}>
           <Input />
         </Form.Item>
         <Form.Item label="Description: " name="description" rules={[

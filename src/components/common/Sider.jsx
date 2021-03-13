@@ -34,7 +34,7 @@ function SiderMenu() {
       <Avatar size={24} src={user.photoURL} />
     );
   return (
-    <Sider className="ant-layout-sider">
+    <Sider className="ant-layou t-sider">
       <div />
       <Menu mode="inline" defaultSelectedKeys={["1"]}>
         <Menu.Item key="1" icon={<HomeOutlined />}>

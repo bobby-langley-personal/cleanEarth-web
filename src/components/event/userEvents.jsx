@@ -2,7 +2,7 @@ import React, {useState, useEffect, useContext} from "react";
 import { List, Button, Table, Tag, Space, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import { DeleteTwoTone } from "@ant-design/icons";
-import EventDetails from "../event/eventDetailsPg";
+import EventDetails from "./eventDetailsPg";
 import { UserContext } from "../../App"
 import moment from "moment";
 import UserPage from "../../scenes/userPage";
