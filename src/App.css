@@ -3,35 +3,35 @@
   padding: 24px;
   background: rgba(255, 255, 255, 0.75);
   max-width: 600px;
-  margin: auto
+  margin: auto;
 }
 
 .eventHeader {
   flex: auto;
   float: center;
-  background: rgba(255, 255, 255, .9);
+  background: rgba(255, 255, 255, 0.9);
   max-width: 600px;
   margin: auto;
-  height: auto
+  height: auto;
 }
 .eventSider {
   flex: auto;
   float: right;
   border-radius: 8px;
-  background: rgba(255, 255, 255, .9);
+  background: rgba(255, 255, 255, 0.9);
   margin: auto;
   padding: 24px;
   display: flex;
-  width: max-content
-  
+  width: max-content;
 }
-h2.ant-typography, .ant-typography h2 {
+h2.ant-typography,
+.ant-typography h2 {
   margin-bottom: 0.5em;
   color: rgba(0, 0, 0, 0.85);
   font-weight: 600;
   font-size: 30px;
-  line-height: .1;
-} 
+  line-height: 0.1;
+}
 
 .eventContent {
   min-height: 280px;
@@ -39,7 +39,6 @@ h2.ant-typography, .ant-typography h2 {
   background: rgba(255, 255, 255, 0.75);
   width: auto;
   margin: auto;
-  
 }
 
 #components-layout-demo-top .logo {
@@ -56,55 +55,69 @@ h2.ant-typography, .ant-typography h2 {
 
 .done {
   text-decoration-line: line-through;
-  opacity: .4;
+  opacity: 0.4;
 }
 
 body {
-  
   background-position: center center;
   background-size: cover;
-
 }
 .ant-layout {
   background: none;
 }
 .ant-layout-header {
-  height: 64px;
-  padding: 0 50px;
-  line-height: 64px;
-  background: transparent;
-  background: #f7f7f8
-
+  background: #fff;
+  padding: 0 0 0 24px;
+  border-bottom: 1px solid #f0f0f0;
 }
-.ant-menu-root.ant-menu-vertical, .ant-menu-root.ant-menu-vertical-left, .ant-menu-root.ant-menu-vertical-right, .ant-menu-root.ant-menu-inline{
+.ant-menu-root.ant-menu-vertical,
+.ant-menu-root.ant-menu-vertical-left,
+.ant-menu-root.ant-menu-vertical-right,
+.ant-menu-root.ant-menu-inline {
   height: 100% !important;
 }
 .ant-layout-sider {
   position: relative;
   min-width: 0;
-  height: inherit ;
-  background: transparent; 
+  height: inherit;
+  background: transparent;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
-  background: #f7f7f8
+  background: #f7f7f8;
 }
 
-.ant-layout-footer{
+.ant-layout-footer {
   color: black;
   font-weight: 600;
   background: none;
-  background: #f7f7f8
+  background: #f7f7f8;
 }
 
-.ant-list-bordered{
-  border: 2px solid white
+.ant-list-bordered {
+  border: 2px solid white;
 }
 
 .ant-list-item {
-  cursor: pointer
+  cursor: pointer;
 }
 
 .buttonRight {
   float: right;
-  border: 2px
+  border: 2px;
+  padding: 10px;
+  margin-right: 5px;
+}
+
+.buttonRight:hover {
+  filter: invert(5%);
+}
+
+.stayRight {
+  float: right;
+  padding: 10px;
+}
+
+.ant-menu-horizontal {
+  border-bottom: none;
+  background: transparent;
 }

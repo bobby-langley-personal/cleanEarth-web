@@ -2,7 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import Head from "../components/home/Head";
 import EventList from "../components/home/EventList";
-import { Col, Row } from "antd";
+import { Col, Row, Space, Spin } from "antd";
+import { Link } from "react-router-dom";
 
 
 function Home() {
@@ -33,8 +34,11 @@ function Home() {
   return (
 
     <>
-
-      <Head setEvents={setEvents} setLoading={setLoading} />
+    {loading ? (  
+    <div style={{textAlign: "center" }} >
+    <Spin style={{textAlign: "center" }}  size="large" /> </div>
+  ) : (
+       user ? (
       <Row justify="space-around" >
       <Col span={20} >
         <EventList  
@@ -45,7 +49,23 @@ function Home() {
       />
       </Col>
       </Row>
+      ) : (
+        <Row justify="space-around">
+          <Col>
+          <h1 style={{textAlign: "center"}}>
+            Welcome to Clean Earth!
+          </h1>
+          
+          <h3>
+            This is a site where you can connect with others about volunteer opportunites near you!
+            Help clean up the earth!
+          </h3>
+          <h4  style={{textAlign: "center"}}> To view the site, please <Link to="/login">log in</Link> or <Link to="/signup">sign up</Link>! </h4>
+          </Col>
+        </Row>
       
+      ))
+    } 
       
     </>
   );

@@ -4,17 +4,13 @@ import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import Avatar from "antd/lib/avatar/avatar";
 import {
-  MenuUnfoldOutlined,
-  HomeOutlined,
-  MenuFoldOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-  UploadOutlined,
-  SettingOutlined,
-  BarsOutlined,
+  
+  UserOutlined
+  
 } from "@ant-design/icons";
 const { Sider } = Layout;
-const { SubMenu } = Menu;
+const rightStyle = {position: 'absolute', top: 0, right: 0}
+
 
 function SiderMenu() {
   const { user, setUser, firebaseAuth } = useContext(UserContext);
@@ -34,21 +30,14 @@ function SiderMenu() {
       <Avatar size={24} src={user.photoURL} />
     );
   return (
-    <Sider className="ant-layou t-sider">
-      <div />
-      <Menu mode="inline" defaultSelectedKeys={["1"]}>
-        <Menu.Item key="1" icon={<HomeOutlined />}>
-          <Link to="/">Home</Link>
-        </Menu.Item>
-        <Menu.Item key="2" icon={<BarsOutlined />}>
-          <Link to="/events">All Events</Link>
-        </Menu.Item>
-        <Divider />
+    <>
+      <Menu mode="horizontal" defaultSelectedKeys={["1"]} style={rightStyle}>
+          {/* <Menu.Group> */}
         <Menu.Item key="3" icon={<UserOutlined />}>
           <Link to="/user/">Profile Page</Link>
         </Menu.Item>
-
-        <Divider />
+        {/* </Menu.Group> */}
+        {/* <Menu.Group align="right"> */}
         {user ? (
           <Menu.Item key="6" onClick={() => signOut()}>
             {<Avatar size={36} src={userImage} />} Logout
@@ -63,8 +52,9 @@ function SiderMenu() {
             </Menu.Item>
           </>
         )}
+        {/* </Menu.Group> */}
       </Menu>
-    </Sider>
+    </>
   );
 }
 

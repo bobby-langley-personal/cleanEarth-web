@@ -2,12 +2,13 @@ import React, { useEffect, useState, useContext } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { getSingleEvent, submitForm } from "./apiCall";
 import { UserContext } from "../../App";
-import { DatePicker, TimePicker, Form, Input, Button, Row, Spin } from "antd";
+import { DatePicker, TimePicker, Form, Input, Button, Row, Spin, message } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 import moment from "moment";
 import Title from "antd/lib/typography/Title";
 
 const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
 
 const showSuccess = (responseMessage) => {
   return alert(responseMessage);
@@ -22,6 +23,20 @@ const rangeConfig = {
     },
   ],
 }
+const layout = {
+  labelCol: {
+    span: 8,
+  },
+  wrapperCol: {
+    span: 16,
+  },
+};
+const tailLayout = {
+  wrapperCol: {
+    offset: 8,
+    span: 16,
+  },
+};
 
 const EventForm = () => {
   // const storageRef = firebase.storage().ref
@@ -66,12 +81,8 @@ const EventForm = () => {
     <>
       <Form
         form={form}
-        labelCol={{
-          span: 4,
-        }}
-        wrapperCol={{
-          span: 14,
-        }}
+        {...layout}
+        title="test"
         layout="horizontal"
         className="site-layout-content"
         fields={fields}
@@ -79,7 +90,7 @@ const EventForm = () => {
         onFinish={(event) => {
           submitForm(event, fields, setResponseMessage, user, history, mode, id, setLoading);
         }}>
-        <Title level={3} >Event Details</Title><br/>
+        <Title level={3}  style={{ textAlign: "center" }} >Event Details</Title><br/>
         <Form.Item label="Event Name:" name="eventName" rules={[
           {
             required: true,
@@ -140,7 +151,7 @@ const EventForm = () => {
         </Form.Item>
         <Form.Item>
           <Row justify="end">
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" >
               {loading && <Spin indicator={antIcon} />}
               Submit
             </Button>

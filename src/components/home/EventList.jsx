@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
-import { List, Button, Table, Tag, Space, Row, Col, Typography, Image } from "antd";
+import { List, Button, Table, Tag, Space, Row, Col, Typography, Image, Spin } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import { DeleteTwoTone, MailOutlined } from "@ant-design/icons";
 import EventDetails from "../event/eventDetailsPg";
 import { UserContext } from "../../App";
 import moment from "moment";
-
+import { PlusCircleTwoTone } from "@ant-design/icons";
 const {Title} = Typography
 
 export function deleteEvent(eventId, setLoading, setEvents, history) {
-  setLoading(true);
+  // setLoading(true)
   const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${eventId}`;
   const params = {
     method: "DELETE",
@@ -18,12 +18,12 @@ export function deleteEvent(eventId, setLoading, setEvents, history) {
     .then((res) => res.json())
     .then((data) => {
       setEvents(data)
-      setLoading(false)
+      // setLoading(false)
      return history.push("/user-events")
     })
     .catch((err) => {
       console.log("error updating item: ", err);
-      setLoading(false);
+      // setLoading(false);
     });
 }
 
@@ -85,10 +85,19 @@ function EventList({ events, setEvents, setLoading }) {
 
   return (
     <>
-    
+    {/* {loading && <Spin indicator={antIcon} />} */}
       <Row justify="space-around">
         <Col span={20}>
+          <Row style={{alignItems: "center"}}>
+            <Col span={10}>
         <Title level={3}> &nbsp; All Events </Title>
+        </Col> 
+        <Col span={14}><Link style={{float: "right"}} to={"/event-form/create"}>
+              <PlusCircleTwoTone />
+              Create New Event
+            </Link>
+            </Col>
+            </Row>
           <Table columns={columns} dataSource={events} />
         </Col>
       </Row>

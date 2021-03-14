@@ -1,3 +1,4 @@
+import {message} from 'antd'
 export const submitForm = (event, fields, setResponseMessage, user, history, mode, id, setLoading) => {
 
   const formPrompt = document.getElementById("formPrompt")
@@ -38,10 +39,13 @@ export const submitForm = (event, fields, setResponseMessage, user, history, mod
         setLoading(false);
         console.log({ data });
         if(callMethod === 'PATCH'){
-        return history.push(`/event-form/update/${data.event.id}`) /*&& formPrompt*/
-        } else {
+        return (
+          history.push(`/event-form/update/${data.event.id}`) && message("Event Updated.")
+           /*&& formPrompt*/
+        )} else {
           return history.push("/") /*&& formPrompt*/
         }
+        
         // setResponseMessage(data.message);
       
     })

@@ -9,13 +9,13 @@ const { Content, Header, Sider } = Layout;
 const { Title } = Typography;
 
 function confirm(eventId, history) {
-deleteEvent(eventId, history);
-message.success('Click on Yes');
+  deleteEvent(eventId, history);
+  message.success("Event Deleted.");
 }
 
 function cancel(e) {
   console.log(e);
-  message.error('Click on No');
+  message.error("Possibly a sound decision.");
 }
 
 function deleteEvent(eventId, history) {
@@ -24,12 +24,12 @@ function deleteEvent(eventId, history) {
     method: "DELETE",
   };
   fetch(API_URL, params)
-  .then(() => history.push("/"))
-  .catch((err) => {
+    .then(() => history.push("/"))
+    .catch((err) => {
       console.log("error updating item: ", err);
     });
-  }
-  
+}
+
 export default function EventDetails(props) {
   const history = useHistory();
   const [event, setEvent] = useState([]);
@@ -60,23 +60,22 @@ export default function EventDetails(props) {
   return (
     <div>
       <Row>
-        <Col>
-          <Header>
+        <Col span={24}>
+          
             {moment(event.date).format("dddd, MMMM Do YYYY")}
-            <div className="buttonRight">
+            <div>
               <Button className="buttonRight">
                 {(user && user.uid) === (event && event.userId) && (
                   <Popconfirm
-                  title="Are you sure to delete this task?"
-                  onConfirm={()=>confirm(eventId, history)}
-                  onCancel={cancel}
-                  okText="Yes"
-                  cancelText="No"
-                >
-                  <Link >
-                    <DeleteTwoTone />
-                  </Link>
-                </Popconfirm>
+                    title="Are you sure about that?"
+                    onConfirm={() => confirm(eventId, history)}
+                    onCancel={cancel}
+                    okText="Yes, delete event."
+                    cancelText="No, I'm not sure.">
+                    <Link>
+                      <DeleteTwoTone />
+                    </Link>
+                  </Popconfirm>
                 )}
               </Button>
               {(user && user.uid) === (event && event.userId) && (
@@ -88,23 +87,28 @@ export default function EventDetails(props) {
               )}
               {/* onClick={() => addToFavorites(event, favoritesList, setFavoritesList)}> <HeartTwoTone twoToneColor="#eb2f96" />  */}
             </div>
-            <Row >
-              <Col span={10}>
-                <Title level={2}>{event.eventName}</Title>{" "}
+            <Row>
+              <Col span={14}>
+                <h2 level={2}>{event.eventName}</h2>
               </Col>
-              <Col span={10}>
-                <Title level={5}>
+              <Col span={8}>
+                <h4 style={{ textAlign: "right" }} >
                   Event By: <Image width={24} height={24} src="error" fallback={event && event.userPhoto} style={{ borderRadius: "50%" }}></Image>
-                  {event.createdBy} 
-                </Title>
+                  {event.createdBy}
+                </h4>
               </Col>
             </Row>
-          </Header>
+          
         </Col>
       </Row>
       <Divider />
       <Row justify="space-around">
-        <Col span={10}>About: {event.description}</Col>
+        <Col span={10}>
+          <p style={{ flexWrap: "wrap" }}>
+            {" "}
+            <h1>About:</h1> {event.description}
+          </p>
+        </Col>
         <Divider type="vertical" />
 
         <Col span={10}>

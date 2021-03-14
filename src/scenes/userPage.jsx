@@ -51,7 +51,7 @@ function UserPage() {
         <Col >
           <Title  level={4}> {user.displayName} </Title> <br />
           Linked email: &nbsp; {user.email}
-          <div className="buttonRight">
+          <div className="buttonRight" float="right">
             <Link to={"/event-form/create"}>
               <PlusCircleTwoTone />
               Create New Event
