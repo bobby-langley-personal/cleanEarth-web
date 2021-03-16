@@ -1,14 +1,15 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../App";
-import { Button, Layout, Row, Col, Typography, Divider, Card, Image } from "antd";
+import { Button, Layout, Row, Col, Typography, Divider, Card, Image, Spin } from "antd";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { PlusCircleTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const { Title } = Typography;
 const { Header} = Layout;
 
-function deleteEvent(userEvent, setUserEvents) {
-  const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${userEvent.id}`;
+function deleteEvent(userEvent, user, setUserEvents, setLoading) {
+    {setLoading(true) && <Spin></Spin>}
+  const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${user.uid}/${userEvent.id}`;
   const params = {
     method: "DELETE",
   };
@@ -16,9 +17,11 @@ function deleteEvent(userEvent, setUserEvents) {
     .then((res) => res.json())
     .then((data) => {
       setUserEvents(data);
+      setLoading(false)
     })
     .catch((err) => {
       console.log("error updating item: ", err);
+      setLoading(false)
     });
 }
 
@@ -30,7 +33,7 @@ function UserPage() {
     console.log(user);
     if (user) {
       setLoading(true);
-      fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events/" + user.uid)
+      fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events/" + user.uid )
         .then((res) => res.json())
         .then((data) => {
           setUserEvents(data);
@@ -84,8 +87,8 @@ function UserPage() {
                       <EditOutlined />
                     </Link>
                   </Button>,
-                  <Button onClick={() => deleteEvent(userEvent, setUserEvents)}>
-                    <DeleteOutlined key="delete" />
+                  <Button   onClick={() => deleteEvent(userEvent, user, setUserEvents, setLoading)}>
+                        <DeleteOutlined key="delete" /> 
                   </Button>,
                 ]}
                 title={<Link to={"/event/" + userEvent.id}>{userEvent.eventName}</Link>}

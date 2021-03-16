@@ -52,17 +52,18 @@ function Home() {
         <Row justify="space-around">
           <Col >
         
-          <h1 style={{textAlign: "center"}} >
+          <h1 style={{textAlign: "center", fontSize: "54px"}} >
           <img  width={75} height={75} src="\circle-cropped.png"></img>
           <br/>
             Welcome to Clean Earth!
           </h1>
-          
-          <h3>
+          <Col span={16}>
+          <h3 style={{textAlign: "center", fontSize: "32px"}}>
             This is a site where you can connect with others about volunteer opportunities near you!
             Help clean up the Earth!
           </h3>
-          <h4  style={{textAlign: "center"}}> To view the site, please <Link to="/login">log in</Link> or <Link to="/signup">sign up</Link>! </h4>
+          <h4  style={{textAlign: "center" , fontSize: "16px"}}> To view the site, please <Link to="/login">log in</Link> or <Link to="/signup">sign up</Link>! </h4>
+          </Col>
           </Col>
         </Row>
       

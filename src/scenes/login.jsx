@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import firebase from "firebase";
 import FacebookLogin from "react-facebook-login";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Typography, Popconfirm, message, Row, Col } from "antd";
+import { Form, Input, Button, Checkbox, Typography, Popconfirm, message, Row, Col, Tooltip } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { UserContext } from "../App";
 
@@ -26,7 +26,7 @@ const responseFacebook = (response) => {
 };
 
 const componentClicked = (setUser) => {
-  setUser()
+  setUser();
   console.log("Clicked!");
 };
 
@@ -76,64 +76,65 @@ const Login = () => {
   };
 
   return (
-      <Row justify="center">
-        <Col span={10}>
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}>
-      <Form.Item
-        label="Email"
-        name="email"
-        rules={[
-          {
-            required: true,
-            message: "Please input your username!",
-          },
-        ]}>
-        <Input />
-      </Form.Item>
+    <Row justify="center">
+      <Col span={10}>
+        <Form
+          {...layout}
+          name="basic"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            label="Email"
+            name="email"
+            rules={[
+              {
+                required: true,
+                message: "Please input your username!",
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password.",
-          },
-        ]}>
-        <Input.Password />
-      </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: "Please input your password.",
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+          <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
 
-      <Form.Item {...tailLayout}>
-      
-                   
-        <Button type="primary" htmlType="submit">
-          Log In
-        </Button>
-                  
-        {error && <Typography.Text type="danger">{error}</Typography.Text>}
-      </Form.Item>
-      <Form.Item {...tailLayout}>
-        <Button type="primary" icon={<GoogleOutlined />} loading={loading} onClick={() => loginWithGoogle(setUser)}>
-          Continue with Google
-        </Button>
-      </Form.Item>
-      <Form.Item>
-        {/* <FacebookLogin appId="426859725081972" autoLoad={true} fields="name,email,picture" onClick={()=> componentClicked} callback={responseFacebook} /> */}
-      </Form.Item>
-    </Form>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Login
+            </Button>
+
+            {error && <Typography.Text type="danger">{error}</Typography.Text>}
+          </Form.Item>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" icon={<GoogleOutlined />} loading={loading} onClick={() => loginWithGoogle(setUser)}>
+              Continue with Google
+            </Button>
+          </Form.Item>
+          <Form.Item>
+            {/* <FacebookLogin appId="426859725081972" autoLoad={true} fields="name,email,picture" onClick={()=> componentClicked} callback={responseFacebook} /> */}
+          </Form.Item>
+        </Form>
       </Col>
-        </Row>
+    </Row>
   );
 };
 

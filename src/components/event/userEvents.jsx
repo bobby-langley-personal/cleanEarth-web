@@ -7,7 +7,7 @@ import { UserContext } from "../../App"
 import moment from "moment";
 import UserPage from "../../scenes/userPage";
 
-export function deleteEvent(eventId, setLoading, setUserEvents) {
+export function deleteUserEvent(eventId, setLoading, setUserEvents) {
   setLoading(true);
   const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${eventId}`;
   const params = {
@@ -16,7 +16,7 @@ export function deleteEvent(eventId, setLoading, setUserEvents) {
   fetch(API_URL, params)
     .then((res) => res.json())
     .then((data) => {
-      setUserEvents(data);
+      setUserEvents({data});
       setLoading(false);
     })
     .catch((err) => {
@@ -85,7 +85,7 @@ function UserEventList() {
       render: (text, event) => (
         <Space size="middle">
           <Link>Invite </Link>
-         {user.uid === event.userId && <Button onClick={() => deleteEvent(event.id, setLoading, setUserEvents)}>Delete</Button>}
+         {user.uid === event.userId && <Button onClick={() => deleteUserEvent(event.id, setLoading, setUserEvents)}>Delete</Button>}
         </Space>
       ),
     },

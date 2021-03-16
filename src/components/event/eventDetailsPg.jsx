@@ -67,7 +67,7 @@ export default function EventDetails(props) {
           <h1 style={{ flexWrap: "wrap" }}>{event.eventName}</h1>
         </Col>
 
-        <Col  span={6} style={{ flexWrap: "wrap" , marginRight: "20px" }}>
+        <Col span={6} style={{ flexWrap: "wrap", marginRight: "20px" }}>
           <h2>Event By: </h2> <Image width={24} height={24} src="error" fallback={event && event.userPhoto} style={{ borderRadius: "50%" }}></Image>
           {event.createdBy}
         </Col>
@@ -82,7 +82,7 @@ export default function EventDetails(props) {
                 okText="Yes, delete event."
                 cancelText="No, I'm not sure."
               >
-                <DeleteTwoTone danger className="icon"/>
+                <DeleteTwoTone danger className="icon" />
               </Popconfirm>
             )}
           </Button>

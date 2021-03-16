@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import firebase from "firebase";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Typography, Popconfirm, message, Row, Col } from "antd";
+import { Form, Input, Button, Checkbox, Typography, Popconfirm, message, Row, Col, Tooltip } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { UserContext } from "../App";
 
@@ -19,7 +19,7 @@ const tailLayout = {
     span: 16,
   },
 };
-
+const tooltip = <span>Signing up with Google provides a more customized experience.</span>
 
 const SignUp = () => {
   const [error, setError] = useState(null);
@@ -111,7 +111,9 @@ const SignUp = () => {
 
                    
         <Button type="primary" htmlType="submit">
+       <Tooltip placement="top" title={tooltip}>
           Sign Up
+                </Tooltip> 
         </Button>
                   
       </Form.Item>
