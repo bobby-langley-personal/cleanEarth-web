@@ -32,7 +32,7 @@ function App() {
               <Row justify="space-between">
                 <Col span={7}>
                   <h1 >
-                    <Link className="welcome" to="/" > <img style={{marginRight: "7px"}} width={24} height={24} src="\circle-cropped.png"></img> Clean Earth </Link>
+                    <Link className="welcome" to="/" style={{fontSize:"26px"}} > <img style={{marginRight: "7px"}} width={24} height={24} src="\circle-cropped.png"></img> Clean Earth </Link>
                   </h1>
                 </Col>
                 <Col span={17} style={{float:"right"}}>
@@ -51,6 +51,7 @@ function App() {
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />
                     <Route path="/" component={Home} />
+
                   </Switch>
                 </Content>
               </Col>

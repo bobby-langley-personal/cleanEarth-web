@@ -27,26 +27,26 @@ function SiderMenu() {
     !user || !user.photoURL ? (
       <Avatar size={36} src={"https://pbs.twimg.com/profile_images/1237550450/mstom_400x400.jpg"} />
     ) : (
-      <Avatar size={24} src={user.photoURL} />
+      <Avatar size={32} src={user.photoURL} />
     );
   return (
     <>
       <Menu mode="horizontal" defaultSelectedKeys={["1"]} style={rightStyle}>
          
-        { user ? (<Menu.Item key="3" icon={<UserOutlined />}>
+        { user ? (<Menu.Item style={{fontSize:"16px"}} key="3" icon={<UserOutlined />}>
           <Link to="/user/">Profile Page</Link>
         </Menu.Item>) : ( <Menu.Item></Menu.Item> )}
         
         {user ? (
-          <Menu.Item key="6" onClick={() => signOut()}>
+          <Menu.Item style={{fontSize:"16px"}} key="6" onClick={() => signOut()}>
             {<Avatar size={36} src={userImage} />} Logout
           </Menu.Item>
         ) : (
           <>
-            <Menu.Item key="7">
-              <Link to="/login">Log In</Link>
+            <Menu.Item style={{fontSize:"16px"}} key="7">
+              <Link  to="/login">Log In</Link>
             </Menu.Item>
-            <Menu.Item key="8">
+            <Menu.Item style={{fontSize:"16px"}} key="8">
               <Link to="/signup">Sign Up</Link>
             </Menu.Item>
           </>

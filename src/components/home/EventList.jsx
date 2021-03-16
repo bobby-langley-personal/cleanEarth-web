@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { List, Button, Table, Tag, Space, Row, Col, Typography, Image, Spin, Popconfirm, message, Tooltip } from "antd";
 import { Link, useHistory } from "react-router-dom";
-import { DeleteTwoTone, MailOutlined } from "@ant-design/icons";
+import { DeleteTwoTone, MailOutlined, SearchOutlined } from "@ant-design/icons";
 import EventDetails from "../event/eventDetailsPg";
 import { UserContext } from "../../App";
 import moment from "moment";
@@ -32,11 +32,13 @@ export function deleteEvent(eventId, setLoading, setEvents, history) {
 
 function EventList({ events, setEvents, setLoading }) {
   const [favoritesList, setFavoritesList] = useState([]);
+  const [searchText, useSearchText] = useState('')
+  const [searchedColumn, useSearchedColumn] = useState('')
   let history = useHistory() 
   const { user } = useContext(UserContext);
 
   const columns = [
-    {
+    { 
       datasource: events,
       title: "Event Name",
       dataIndex: "eventName",
@@ -51,14 +53,13 @@ function EventList({ events, setEvents, setLoading }) {
       key: "date",
       render: (text, event) => moment(event.date).format("MMMM, Do YYYY"),
 
-      filterMultiple: false,
-      onFilter: (value, record) => record.date.indexOf(value) === 0,
+      
       defaultSortOrder: "ascend",
       sorter: (a, b) => moment(a.date) - moment(b.date),
       sortDirections: ["descend", "ascend"],
     },
     {
-      title: "Location",
+      title: "Location", 
       dataIndex: "location",
       key: "location",
     },
@@ -66,8 +67,7 @@ function EventList({ events, setEvents, setLoading }) {
       title: "Hosted By",
       dataIndex: "hostedBy",
       key: "hostedBy",
-      filterMultiple: false,
-      onFilter: (value, record) => record.hostedBy.indexOf(value) === 0,
+      
       sorter: (a, b) => a.hostedBy.length - b.hostedBy.length,
       sortDirections: ['ascend'],
     },
@@ -99,13 +99,13 @@ function EventList({ events, setEvents, setLoading }) {
             <Col span={10}>
         <Title level={3}> &nbsp; All Events </Title>
         </Col> 
-        <Col span={14}><Link style={{float: "right"}} to={"/event-form/create"}>
+        <Col span={14}><Link style={{float: "right", fontSize: "18px"}} to={"/event-form/create"}>
               <PlusCircleTwoTone />
               Create New Event
             </Link>
             </Col>
             </Row>
-          <Table columns={columns} dataSource={events} />
+          <Table columns={columns} dataSource={events} style={{fontSize:"18px"}} />
         </Col>
       </Row>
     </>

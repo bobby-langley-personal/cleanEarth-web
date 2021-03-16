@@ -70,6 +70,15 @@ body {
   padding: 0 0 0 24px;
   border-bottom: 1px solid #f0f0f0;
 }
+.localHost {
+  display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: center;
+    
+}
+
+
 .ant-menu-root.ant-menu-vertical,
 .ant-menu-root.ant-menu-vertical-left,
 .ant-menu-root.ant-menu-vertical-right,
@@ -128,6 +137,15 @@ body {
   align-items: center;
   text-align: center;
   margin-right: 2px;
-  justify: space-between;
+ 
+
+}
+.alignPhoto {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  margin-right: 2px;
+ 
 
 }

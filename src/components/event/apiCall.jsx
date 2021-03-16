@@ -19,7 +19,7 @@ export const submitForm = (event, fields, setResponseMessage, user, history, mod
   if (!user) {
     return null;
   }
-  formValues.userPhoto=user.photoURL;
+  formValues.userPhoto = user.photoURL;
   formValues.userId = user.uid;
   formValues.createdBy = user.displayName;
   formValues.hostedBy = user.displayName;

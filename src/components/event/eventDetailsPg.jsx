@@ -64,12 +64,12 @@ export default function EventDetails(props) {
       <Row justify="space-around">
         <Col span={10}>
           <h4>{moment(event.date).format("dddd, MMMM Do YYYY")}</h4>
-          <h1 style={{ flexWrap: "wrap" }}>{event.eventName}</h1>
+          <h1 style={{ flexWrap: "wrap", fontSize: "48px" }}>{event.eventName}</h1>
         </Col>
 
         <Col span={6} style={{ flexWrap: "wrap", marginRight: "20px" }}>
-          <h2>Event By: </h2> <Image width={24} height={24} src="error" fallback={event && event.userPhoto} style={{ borderRadius: "50%" }}></Image>
-          {event.createdBy}
+          <h2 >Event By: </h2> <p className="alignPhoto" style={{fontSize: "20px"}}><Image width={36} height={36} src="error" fallback={event && event.userPhoto} style={{ borderRadius: "50%" }}></Image> &nbsp; &nbsp;
+          {event.createdBy}</p>
         </Col>
 
         <Col span={6} style={{ text: "center" }}>
@@ -100,13 +100,13 @@ export default function EventDetails(props) {
       <Row justify="space-around">
         <Col span={10}>
           <h2>About:</h2>
-          <p /* style={{ flexWrap: "wrap" }}*/>{event.description}</p>
+          <p  style={{ fontSize: "18px" }}>{event.description}</p>
         </Col>
         <Divider type="vertical" />
         <Col span={10}>
           <Row>
             <Col>
-              <h3>Date: &nbsp;{moment(event.date).format("dddd, MMMM Do YYYY")} </h3>
+              <h3> Date: &nbsp;{moment(event.date).format("dddd, MMMM Do YYYY")} </h3>
               <br />
               <h3>
                 Time:&nbsp;{event && event.startEndTime && moment(event.startEndTime[0]).format("hh:mm a")} -{" "}
