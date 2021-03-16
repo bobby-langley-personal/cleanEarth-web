@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { List, Button, Table, Tag, Space, Row, Col, Typography, Image, Spin } from "antd";
+import { List, Button, Table, Tag, Space, Row, Col, Typography, Image, Spin, Popconfirm, message, Tooltip } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import { DeleteTwoTone, MailOutlined } from "@ant-design/icons";
 import EventDetails from "../event/eventDetailsPg";
@@ -7,6 +7,9 @@ import { UserContext } from "../../App";
 import moment from "moment";
 import { PlusCircleTwoTone } from "@ant-design/icons";
 const {Title} = Typography
+
+
+const tooltip = <span>Coming soon!</span>
 
 export function deleteEvent(eventId, setLoading, setEvents, history) {
   // setLoading(true)
@@ -31,6 +34,7 @@ function EventList({ events, setEvents, setLoading }) {
   const [favoritesList, setFavoritesList] = useState([]);
   let history = useHistory() 
   const { user } = useContext(UserContext);
+
   const columns = [
     {
       datasource: events,
@@ -74,7 +78,10 @@ function EventList({ events, setEvents, setLoading }) {
 
       render: (text, event) => (
         <Space size="middle">
-          <Link> <MailOutlined /> </Link>
+          <Link> <Tooltip placement="top" title={tooltip}>
+                <MailOutlined /> 
+                </Tooltip>
+              </Link>
           <Link to={"/event/" + event.id}> More </Link>
           
           {/* {user.uid === event.userId && <Button onClick={() => deleteEvent(event.id, setLoading, setEvents, history)}>Delete</Button>} */}

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import firebase from "firebase";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Typography } from "antd";
+import { Form, Input, Button, Checkbox, Typography, Popconfirm, message, Row, Col } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { UserContext } from "../App";
 
@@ -20,12 +20,15 @@ const tailLayout = {
   },
 };
 
+
 const SignUp = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const { setUser, firebaseAuth } = useContext(UserContext);
-  let history = useHistory();
-  const onFinish = ({ email, password }) => {
+  let history = useHistory()
+  
+    const onFinish = ({ email, password }) => {
+      
     firebaseAuth
       .createUserWithEmailAndPassword(email, password)
       .then((res) => {
@@ -35,6 +38,7 @@ const SignUp = () => {
       })
       .catch((err) => setError(err.message));
   };
+
   const loginWithGoogle = () => {
     setLoading(true);
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -56,6 +60,8 @@ const SignUp = () => {
   };
 
   return (
+    <Row justify="center">
+    <Col span={10}>
     <Form
       {...layout}
       name="basic"
@@ -96,12 +102,18 @@ const SignUp = () => {
         {error && (
           <>
             <Typography.Text type="danger">{error}</Typography.Text>
+            <br/>
+            <br/>
+            
           </>
         )}
 
+
+                   
         <Button type="primary" htmlType="submit">
           Sign Up
         </Button>
+                  
       </Form.Item>
 
       <Form.Item {...tailLayout}>
@@ -110,6 +122,8 @@ const SignUp = () => {
         </Button>
       </Form.Item>
     </Form>
+    </Col>
+    </Row>
   );
 };
 

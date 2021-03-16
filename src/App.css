@@ -108,8 +108,8 @@ body {
   margin-right: 5px;
 }
 
-.buttonRight:hover {
-  filter: invert(5%);
+.icon:hover {
+  filter: invert(20%);
 }
 
 .stayRight {
@@ -120,4 +120,14 @@ body {
 .ant-menu-horizontal {
   border-bottom: none;
   background: transparent;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  margin-right: 2px;
+  justify: space-between;
+
 }

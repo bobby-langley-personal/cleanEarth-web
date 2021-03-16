@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import firebase from "firebase";
 import FacebookLogin from "react-facebook-login";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Typography } from "antd";
+import { Form, Input, Button, Checkbox, Typography, Popconfirm, message, Row, Col } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { UserContext } from "../App";
 
@@ -20,11 +20,13 @@ const tailLayout = {
     span: 16,
   },
 };
+
 const responseFacebook = (response) => {
   console.log(response);
 };
 
-const componentClicked = () => {
+const componentClicked = (setUser) => {
+  setUser()
   console.log("Clicked!");
 };
 
@@ -74,6 +76,8 @@ const Login = () => {
   };
 
   return (
+      <Row justify="center">
+        <Col span={10}>
     <Form
       {...layout}
       name="basic"
@@ -111,20 +115,25 @@ const Login = () => {
       </Form.Item>
 
       <Form.Item {...tailLayout}>
+      
+                   
         <Button type="primary" htmlType="submit">
           Log In
         </Button>
+                  
         {error && <Typography.Text type="danger">{error}</Typography.Text>}
       </Form.Item>
       <Form.Item {...tailLayout}>
-        <Button type="primary" icon={<GoogleOutlined />} loading={loading} onClick={() => loginWithGoogle()}>
+        <Button type="primary" icon={<GoogleOutlined />} loading={loading} onClick={() => loginWithGoogle(setUser)}>
           Continue with Google
         </Button>
       </Form.Item>
       <Form.Item>
-        {/* <FacebookLogin appId="426859725081972" autoLoad={true} fields="name,email,picture" onClick={componentClicked} callback={responseFacebook} /> */}
+        {/* <FacebookLogin appId="426859725081972" autoLoad={true} fields="name,email,picture" onClick={()=> componentClicked} callback={responseFacebook} /> */}
       </Form.Item>
     </Form>
+      </Col>
+        </Row>
   );
 };
 

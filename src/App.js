@@ -27,12 +27,12 @@ function App() {
     <>
       <UserContext.Provider value={{ user, setUser, firebaseAuth }}>
         <Router>
-          <Layout style={{ minHeight: "100vh" }}>
+          <Layout>
             <Header className="ant-layout-header">
               <Row justify="space-between">
                 <Col span={7}>
-                  <h1>
-                    <Link to="/" > Clean Earth </Link>
+                  <h1 >
+                    <Link className="welcome" to="/" > <img style={{marginRight: "7px"}} width={24} height={24} src="\circle-cropped.png"></img> Clean Earth </Link>
                   </h1>
                 </Col>
                 <Col span={17} style={{float:"right"}}>
@@ -42,7 +42,7 @@ function App() {
             </Header>
             <Row justify="space-around">
               <Col span={24}>
-                <Content style={{ padding: "24px" }}>
+                <Content style={{ padding: "24px", minHeight: "80vh"  }}>
                   <Switch>
                     <Route path="/event/:eventId" component={EventDetails} />
                     <Route path="/event-form/:mode/:id?" component={EventForm} />
@@ -52,7 +52,6 @@ function App() {
                     <Route path="/signup" component={Signup} />
                     <Route path="/" component={Home} />
                   </Switch>
-                  {/* </div> */}
                 </Content>
               </Col>
             </Row>

@@ -49,84 +49,81 @@ export default function EventDetails(props) {
       .catch((e) => {
         console.log(e);
         setLoading(false);
+        console.log({ event });
       });
 
     console.log("this is event", event);
   }, []);
-  console.log(event.startTime);
+
   console.log({ user });
   console.log({ eventId });
-
+  const start = event && event.length > 0 && event.startEndTime[0];
+  const end = event && event.length > 0 && moment(event.startEndTime[1]).format("hh:mm a");
   return (
     <div>
-      <Row>
-        <Col span={24}>
-          
-            {moment(event.date).format("dddd, MMMM Do YYYY")}
-            <div>
-              <Button className="buttonRight">
-                {(user && user.uid) === (event && event.userId) && (
-                  <Popconfirm
-                    title="Are you sure about that?"
-                    onConfirm={() => confirm(eventId, history)}
-                    onCancel={cancel}
-                    okText="Yes, delete event."
-                    cancelText="No, I'm not sure.">
-                    <Link>
-                      <DeleteTwoTone />
-                    </Link>
-                  </Popconfirm>
-                )}
-              </Button>
-              {(user && user.uid) === (event && event.userId) && (
-                <Button className="buttonRight">
-                  <Link to={"/event-form/update/" + event.id}>
-                    <EditTwoTone />
-                  </Link>
-                </Button>
-              )}
-              {/* onClick={() => addToFavorites(event, favoritesList, setFavoritesList)}> <HeartTwoTone twoToneColor="#eb2f96" />  */}
-            </div>
-            <Row>
-              <Col span={14}>
-                <h2 level={2}>{event.eventName}</h2>
-              </Col>
-              <Col span={8}>
-                <h4 style={{ textAlign: "right" }} >
-                  Event By: <Image width={24} height={24} src="error" fallback={event && event.userPhoto} style={{ borderRadius: "50%" }}></Image>
-                  {event.createdBy}
-                </h4>
-              </Col>
-            </Row>
-          
+      <Row justify="space-around">
+        <Col span={10}>
+          <h4>{moment(event.date).format("dddd, MMMM Do YYYY")}</h4>
+          <h1 style={{ flexWrap: "wrap" }}>{event.eventName}</h1>
+        </Col>
+
+        <Col  span={6} style={{ flexWrap: "wrap" , marginRight: "20px" }}>
+          <h2>Event By: </h2> <Image width={24} height={24} src="error" fallback={event && event.userPhoto} style={{ borderRadius: "50%" }}></Image>
+          {event.createdBy}
+        </Col>
+
+        <Col span={6} style={{ text: "center" }}>
+          <Button className="buttonRight" style={{ fontSize: "32px" }}>
+            {(user && user.uid) === (event && event.userId) && (
+              <Popconfirm
+                title="Are you sure about that?"
+                onConfirm={() => confirm(eventId, history)}
+                onCancel={cancel}
+                okText="Yes, delete event."
+                cancelText="No, I'm not sure."
+              >
+                <DeleteTwoTone danger className="icon"/>
+              </Popconfirm>
+            )}
+          </Button>
+          {(user && user.uid) === (event && event.userId) && (
+            <Button className="buttonRight" style={{ fontSize: "32px" }}>
+              <Link to={"/event-form/update/" + event.id}>
+                <EditTwoTone className="icon" />
+              </Link>
+            </Button>
+          )}
         </Col>
       </Row>
+
       <Divider />
       <Row justify="space-around">
         <Col span={10}>
-          <p style={{ flexWrap: "wrap" }}>
-            {" "}
-            <h1>About:</h1> {event.description}
-          </p>
+          <h2>About:</h2>
+          <p /* style={{ flexWrap: "wrap" }}*/>{event.description}</p>
         </Col>
         <Divider type="vertical" />
-
         <Col span={10}>
           <Row>
             <Col>
-              Date: &nbsp;{moment(event.date).format("dddd, MMMM Do YYYY")}
+              <h3>Date: &nbsp;{moment(event.date).format("dddd, MMMM Do YYYY")} </h3>
               <br />
-              Time:&nbsp;{moment(event.startTime).format("h:mm a")} - {moment(event.endTime).format("h:mm a")} &nbsp;
+              <h3>
+                Time:&nbsp;{event && event.startEndTime && moment(event.startEndTime[0]).format("hh:mm a")} -{" "}
+                {event && event.startEndTime && moment(event.startEndTime[1]).format("h:mm a")} &nbsp;{" "}
+              </h3>
               <br />
               <Divider />
             </Col>
           </Row>
           <Row>
             <Col>
-              Where: {event.location}
+              <h3>Where: {event.location}</h3>
+
+              <h3> Address: {event.address} </h3>
               <br />
-              Address: {event.address} <br />
-              <a href={"https://www.google.com/maps/search/?api=1&query=" + event.address} target="_blank">
+              <a style={{ fontSize: "18px" }} href={"https://www.google.com/maps/search/?api=1&query=" + event.address} target="_blank">
+                <img width={24} height={24} src="\google-maps.png"></img>
                 See Event on Google Maps
               </a>
             </Col>

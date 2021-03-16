@@ -32,12 +32,11 @@ function SiderMenu() {
   return (
     <>
       <Menu mode="horizontal" defaultSelectedKeys={["1"]} style={rightStyle}>
-          {/* <Menu.Group> */}
-        <Menu.Item key="3" icon={<UserOutlined />}>
+         
+        { user ? (<Menu.Item key="3" icon={<UserOutlined />}>
           <Link to="/user/">Profile Page</Link>
-        </Menu.Item>
-        {/* </Menu.Group> */}
-        {/* <Menu.Group align="right"> */}
+        </Menu.Item>) : ( <Menu.Item></Menu.Item> )}
+        
         {user ? (
           <Menu.Item key="6" onClick={() => signOut()}>
             {<Avatar size={36} src={userImage} />} Logout
