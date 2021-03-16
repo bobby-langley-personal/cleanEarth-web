@@ -55,22 +55,20 @@ export default function EventDetails(props) {
     console.log("this is event", event);
   }, []);
 
-  console.log({ user });
-  console.log({ eventId });
-  const start = event && event.length > 0 && event.startEndTime[0];
-  const end = event && event.length > 0 && moment(event.startEndTime[1]).format("hh:mm a");
   return (
     <div>
       <Row justify="space-around">
         <Col span={10}>
-          <h4>{moment(event.date).format("dddd, MMMM Do YYYY")}</h4>
-          <h1 style={{ flexWrap: "wrap", fontSize: "48px" }}>{event.eventName}</h1>
+          <h4 style={{ fontSize: "18px" }}>{moment(event.date).format("dddd, MMMM Do YYYY")}</h4>
+          <h1 style={{ flexWrap: "wrap", fontSize: "42px" }}>{event.eventName}</h1>
         </Col>
 
-        <Col span={6} style={{ flexWrap: "wrap", marginRight: "20px" }}>
-          <h2 >Event By: </h2> <p className="alignPhoto" style={{fontSize: "20px"}}><Image width={36} height={36} src="error" fallback={event && event.userPhoto} style={{ borderRadius: "50%" }}></Image> &nbsp; &nbsp;
-          {event.createdBy}</p>
-        </Col>
+        <div style={{ flexWrap: "nowrap" }}>
+          <span style={{ fontSize: "20px", verticalAlign: "baseline"}}>Event By:</span>
+          <span> &nbsp;
+            <span style={{ fontSize: "20px", verticalAlign: "baseline" }}>{event.createdBy}</span>
+          </span>
+        </div>
 
         <Col span={6} style={{ text: "center" }}>
           <Button className="buttonRight" style={{ fontSize: "32px" }}>
@@ -100,10 +98,10 @@ export default function EventDetails(props) {
       <Row justify="space-around">
         <Col span={10}>
           <h2>About:</h2>
-          <p  style={{ fontSize: "18px" }}>{event.description}</p>
+          <p style={{ fontSize: "18px" }}>{event.description}</p>
         </Col>
         <Divider type="vertical" />
-        <Col span={10}>
+        <Col span={8}>
           <Row>
             <Col>
               <h3> Date: &nbsp;{moment(event.date).format("dddd, MMMM Do YYYY")} </h3>
@@ -119,7 +117,7 @@ export default function EventDetails(props) {
           <Row>
             <Col>
               <h3>Where: {event.location}</h3>
-
+              <br />
               <h3> Address: {event.address} </h3>
               <br />
               <a style={{ fontSize: "18px" }} href={"https://www.google.com/maps/search/?api=1&query=" + event.address} target="_blank">

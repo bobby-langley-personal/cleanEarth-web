@@ -43,6 +43,8 @@ function EventList({ events, setEvents, setLoading }) {
       title: "Event Name",
       dataIndex: "eventName",
       key: "eventName",
+     
+      
 
       render: (text, event) => <Link to={"/event/" + event.id}>  {event.eventName}</Link>,
       
@@ -56,7 +58,7 @@ function EventList({ events, setEvents, setLoading }) {
       
       defaultSortOrder: "ascend",
       sorter: (a, b) => moment(a.date) - moment(b.date),
-      sortDirections: ["descend", "ascend"],
+      // sortDirections: ["descend", "ascend"],
     },
     {
       title: "Location", 
@@ -84,7 +86,6 @@ function EventList({ events, setEvents, setLoading }) {
               </Link>
           <Link to={"/event/" + event.id}> More </Link>
           
-          {/* {user.uid === event.userId && <Button onClick={() => deleteEvent(event.id, setLoading, setEvents, history)}>Delete</Button>} */}
         </Space>
       ),
     },
