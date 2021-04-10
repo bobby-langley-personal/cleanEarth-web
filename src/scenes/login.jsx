@@ -20,6 +20,7 @@ const tailLayout = {
     span: 16,
   },
 };
+const tooltip = <span> Remember... Logging in with Google provides a more customized experience.</span>
 
 const responseFacebook = (response) => {
   console.log(response);
@@ -119,7 +120,9 @@ const Login = () => {
 
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
+            <Tooltip placement="top" title={tooltip}>
               Login
+              </Tooltip>
             </Button>
 
             {error && <Typography.Text type="danger">{error}</Typography.Text>}

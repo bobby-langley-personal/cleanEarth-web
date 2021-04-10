@@ -59,7 +59,7 @@ function Home() {
           </h1>
           <Col span={19} justify="center" style={{textAlign: "center"}} >
           <h3 style={{textAlign: "center", fontSize: "27px", fontStyle: "italic"}}>
-            This is a site where you can connect with others about volunteer opportunities near you! <br/>
+            This is a site where you can connect with others about volunteer opportunities near you. <br/>
             <h3 style={{textAlign: "center", fontSize: "27px", fontStyle: "italic"}}>Help clean up the Earth!</h3>
           </h3>
           <h4  style={{textAlign: "center" , fontSize: "18px"}}> To view the full site, please <Link to="/login">log in</Link> or <Link to="/signup">sign up</Link>! </h4>
