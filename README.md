@@ -1,10 +1,18 @@
 # Welcome
 
-Welcome to my final project!
+Welcome to my final project! 
+
+Boca Code gave our cohort the assignment of creating an app that is fully deployed and can show our full stack development capability. It did not have to be a novel idea however it did need some show some sort of use or practicality. We had two weeks to work on it in between lectures, code challenges, and guest speakers during career week. 
 
 # About
 
-This is a web app with the intention of creating and finding out about volunteer clean up events.  It is written in Javascript, HTML, and CSS using node, express, and react. The frontend and backend API are deployed and hosted using Firebase. Authentication is handled through Firebase and the app is connected to a Firestore database. Ant Design was used for styling and additional components.
+So here it is...
+
+This is a web app made with the intention of creating and finding out about events. The initial idea was for beach cleanups but why limit it to solely the beach? Why not parks, lakes, sidewalks, downtowns? This could be used for anything. It could easily evolve to much more than just an events site.
+
+## What went in...
+
+The app is written in Javascript, HTML, and CSS using node, express, and react. The frontend and backend API are deployed and hosted using Firebase. Authentication is handled through Firebase and the app is connected to a Firestore database. Ant Design was used for styling and additional components.
 
 You can access this app from anywhere that has internet access, so feel free to use it on desktop, tablet, phone, etc. but at this point in time it is best viewed via desktop.
 
