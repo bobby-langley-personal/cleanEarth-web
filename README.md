@@ -2,7 +2,7 @@
 
 Welcome to my final project! 
 
-Boca Code gave our cohort the assignment of creating an app that is fully deployed and can show our full stack development capability. It did not have to be a novel idea however it did need some show some sort of use or practicality. 
+Boca Code gave our cohort the assignment of creating an app that is fully deployed and can show our full stack development capability. It did not have to be a novel idea however it did need some show some sort of use or practicality. We had two weeks to work on it in between lectures, code challenges, and guest speakers during career week. 
 
 # About
 
