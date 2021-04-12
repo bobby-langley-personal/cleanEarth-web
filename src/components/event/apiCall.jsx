@@ -41,13 +41,9 @@ export const submitForm = (event, fields, setResponseMessage, user, history, mod
         if(callMethod === 'PATCH'){
         return (
           history.push(`/event/${id}`) && message("Event Updated.")
-           /*&& formPrompt*/
         )} else {
-          return history.push("/") /*&& formPrompt*/
-        }
-        
-        // setResponseMessage(data.message);
-      
+          return history.push("/") 
+        }  
     })
     .catch(() => setLoading(false));
   event.preventDefault();

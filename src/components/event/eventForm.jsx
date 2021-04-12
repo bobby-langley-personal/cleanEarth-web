@@ -41,7 +41,6 @@ const tailLayout = {
 };
 
 const EventForm = () => {
-  // const storageRef = firebase.storage().ref
   const [form] = Form.useForm();
   const [event, setEvent] = useState(undefined);
   const [loading, setLoading] = useState(false);

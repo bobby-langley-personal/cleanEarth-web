@@ -3,10 +3,8 @@ import { Menu, Layout, Divider } from "antd";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../App";
 import Avatar from "antd/lib/avatar/avatar";
-import {
-  
-  UserOutlined
-  
+import { 
+  UserOutlined 
 } from "@ant-design/icons";
 const { Sider } = Layout;
 const rightStyle = {position: 'absolute', top: 0, right: 0}
@@ -51,7 +49,6 @@ function SiderMenu() {
             </Menu.Item>
           </>
         )}
-        {/* </Menu.Group> */}
       </Menu>
     </>
   );
