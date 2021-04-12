@@ -1,8 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
-import { List, Button, Table, Tag, Space, Row, Col } from "antd";
+import { List, Button, Table, Tag, Space, Row, Col, Spin } from "antd";
 import { Link } from "react-router-dom";
-import { DeleteTwoTone } from "@ant-design/icons";
-import EventDetails from "./eventDetailsPg";
 import { UserContext } from "../../App"
 import moment from "moment";
 import UserPage from "../../scenes/userPage";
@@ -26,7 +24,6 @@ export function deleteUserEvent(eventId, setLoading, setUserEvents) {
 }
 
 function UserEventList() {
-  
   const [userEvents, setUserEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(UserContext);
@@ -37,7 +34,7 @@ function UserEventList() {
       fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events/"+ user.uid)
         .then((res) => res.json())
         .then((data) => {
-          setUserEvents(data); console.log('data', data)
+          setUserEvents(data); 
           setLoading(false);
         })
         .catch((e) => {
@@ -49,7 +46,6 @@ function UserEventList() {
       setLoading(false);
     }
   }, [user]);
-  console.log(userEvents)
  
   const columns = [
     {
@@ -94,15 +90,21 @@ function UserEventList() {
  />
 
   return (
-    
+    <>
+    {loading ? (  
+      <div style={{textAlign: "center" }} >
+      <Spin style={{textAlign: "center" }}  size="large" /> </div>
+    ) : (
       <Row justify="space-around">
         <Col span={20}>
           <Table columns={columns} dataSource={userEvents} />
           
         </Col>
       </Row>
+    )}
+</>
+  )
     
-  );
 }
 
 export default UserEventList;

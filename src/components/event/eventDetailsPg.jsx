@@ -68,10 +68,10 @@ export default function EventDetails(props) {
       <Row justify="space-around">
         <Col span={10}>
           <h4 style={{ fontSize: "18px" }}>{moment(event.date).format("dddd, MMMM Do YYYY")}</h4>
-          <h1 style={{ flexWrap: "wrap", fontSize: "42px" }}>{event.eventName}</h1>
+          <h1 style={{ flexWrap: "wrap", fontSize: "38px" }}>{event.eventName}</h1>
         </Col>
 
-        <div style={{ flexWrap: "nowrap" }}>
+        <div style={{ flexWrap: "nowrap", alignSelf: "flex-end" }}>
           <span style={{ fontSize: "20px", verticalAlign: "baseline"}}>Event By:</span>
           <span> &nbsp;
             <span style={{ fontSize: "20px", verticalAlign: "baseline" }}>{event.createdBy}</span>
@@ -115,8 +115,8 @@ export default function EventDetails(props) {
               <h3> Date: &nbsp;{moment(event.date).format("dddd, MMMM Do YYYY")} </h3>
               <br />
               <h3>
-                Time:&nbsp;{event && event.startEndTime && moment(event.startEndTime[0]).format("hh:mm a")} -{" "}
-                {event && event.startEndTime && moment(event.startEndTime[1]).format("h:mm a")} &nbsp;{" "}
+                Time:&nbsp;{event && event.startEndTime && moment(event.startEndTime[0]).format("hh:mm a")} -
+                {event && event.startEndTime && moment(event.startEndTime[1]).format("h:mm a")} &nbsp;
               </h3>
               <br />
               <Divider />

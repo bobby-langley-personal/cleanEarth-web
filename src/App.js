@@ -10,7 +10,6 @@ import "./App.css";
 import EventForm from "./components/event/eventForm";
 import EventDetails from "./components/event/eventDetailsPg";
 import SiderMenu from "./components/common/Sider";
-import Title from "antd/lib/typography/Title";
 import UserEventList from "./components/event/userEvents";
 import Userpage from "./scenes/userPage";
 const { Content, Footer, Header } = Layout;

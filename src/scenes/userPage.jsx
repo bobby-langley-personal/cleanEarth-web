@@ -1,14 +1,30 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../App";
-import { Button, Layout, Row, Col, Typography, Divider, Card, Image, Spin } from "antd";
+import {
+  Button,
+  Layout,
+  Row,
+  Col,
+  Typography,
+  Divider,
+  Card,
+  Image,
+  Spin,
+} from "antd";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import { PlusCircleTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import {
+  PlusCircleTwoTone,
+  DeleteOutlined,
+  EditOutlined,
+} from "@ant-design/icons";
 const { Title } = Typography;
-const { Header} = Layout;
+const { Header } = Layout;
 
 function deleteEvent(userEvent, user, setUserEvents, setLoading) {
-    {setLoading(true) && <Spin></Spin>}
+  {
+    setLoading(true) && <Spin></Spin>;
+  }
   const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${user.uid}/${userEvent.id}`;
   const params = {
     method: "DELETE",
@@ -17,11 +33,11 @@ function deleteEvent(userEvent, user, setUserEvents, setLoading) {
     .then((res) => res.json())
     .then((data) => {
       setUserEvents(data);
-      setLoading(false)
+      setLoading(false);
     })
     .catch((err) => {
       console.log("error updating item: ", err);
-      setLoading(false)
+      setLoading(false);
     });
 }
 
@@ -33,7 +49,10 @@ function UserPage() {
     console.log(user);
     if (user) {
       setLoading(true);
-      fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events/" + user.uid )
+      fetch(
+        "https://us-central1-cleanearth-api.cloudfunctions.net/app/events/" +
+          user.uid
+      )
         .then((res) => res.json())
         .then((data) => {
           setUserEvents(data);
@@ -54,7 +73,14 @@ function UserPage() {
   return (
     <div>
       <Header>
-        <Image width={75} height={75} src="error" fallback={user.photoURL} alt="user photo" style={{ borderRadius: "50%", display: "flex" }}></Image>
+        <Image
+          width={75}
+          height={75}
+          src="error"
+          fallback={user.photoURL}
+          alt="user photo"
+          style={{ borderRadius: "50%", display: "flex" }}
+        ></Image>
       </Header>
       <Divider> Your Profile </Divider>
       <Row justify="space-around">
@@ -72,7 +98,9 @@ function UserPage() {
           </Link>
         </Col>
         <Divider orientation="left"> Your Events </Divider>
-
+<>
+       
+    
         {userEvents.map((userEvent) => {
           console.log({ userEvent });
           return (
@@ -87,18 +115,27 @@ function UserPage() {
                       <EditOutlined />
                     </Link>
                   </Button>,
-                  <Button   onClick={() => deleteEvent(userEvent, user, setUserEvents, setLoading)}>
-                        <DeleteOutlined key="delete" /> 
+                  <Button
+                    onClick={() =>
+                      deleteEvent(userEvent, user, setUserEvents, setLoading)
+                    }
+                  >
+                    <DeleteOutlined key="delete" />
                   </Button>,
                 ]}
-                title={<Link to={"/event/" + userEvent.id}>{userEvent.eventName}</Link>}
+                title={
+                  <Link to={"/event/" + userEvent.id}>
+                    {userEvent.eventName}
+                  </Link>
+                }
               >
                 {moment(userEvent.date).format("dddd, MMMM Do YYYY")}
-                {/* <Card.Item> {userEvent.date} </Card.Item> */}
               </Card>
             </Col>
           );
         })}
+        )
+        </>
       </Row>
     </div>
   );
