@@ -4,7 +4,7 @@ Welcome to my final project!
 
 # About
 
-This is a web app made with the intention of creating and finding out about events. The initial idea was for beach cleanups but why limit it to solely the beach? Why not parks, lakes, sidewalks, downtowns? This could be used for anything it could easily evolve to more than just an events site.
+This is a web app made with the intention of creating and finding out about events. The initial idea was for beach cleanups but why limit it to solely the beach? Why not parks, lakes, sidewalks, downtowns? This could be used for anything. It could easily evolve to much more than just an events site.
 
 ## What went in...
 
