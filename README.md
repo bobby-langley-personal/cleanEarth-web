@@ -1,8 +1,12 @@
 # Welcome
 
-Welcome to my final project!
+Welcome to my final project! 
+
+Boca Code gave our cohort the assignment of creating an app that is fully deployed and can show our full stack development capability. It did not have to be a novel idea however it did need some show some sort of use or practicality. 
 
 # About
+
+So here it is...
 
 This is a web app made with the intention of creating and finding out about events. The initial idea was for beach cleanups but why limit it to solely the beach? Why not parks, lakes, sidewalks, downtowns? This could be used for anything. It could easily evolve to much more than just an events site.
 
