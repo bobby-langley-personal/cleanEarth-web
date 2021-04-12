@@ -4,7 +4,11 @@ Welcome to my final project!
 
 # About
 
-This is a web app created with the intention of creating and finding out about volunteer clean up events.  It is written in Javascript, HTML, and CSS using node, express, and react. The frontend and backend API are deployed and hosted using Firebase. Authentication is handled through Firebase and the app is connected to a Firestore database. Ant Design was used for styling and additional components.
+This is a web app made with the intention of creating and finding out about events. The initial idea was for beach cleanups but why limit it to solely the beach? Why not parks, lakes, sidewalks, downtowns? This could be used for anything it could easily evolve to more than just an events site.
+
+## What went in...
+
+The app is written in Javascript, HTML, and CSS using node, express, and react. The frontend and backend API are deployed and hosted using Firebase. Authentication is handled through Firebase and the app is connected to a Firestore database. Ant Design was used for styling and additional components.
 
 You can access this app from anywhere that has internet access, so feel free to use it on desktop, tablet, phone, etc. but at this point in time it is best viewed via desktop.
 
