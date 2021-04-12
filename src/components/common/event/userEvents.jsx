@@ -3,9 +3,9 @@ import { List, Button, Table, Tag, Space, Row, Col } from "antd";
 import { Link } from "react-router-dom";
 import { DeleteTwoTone } from "@ant-design/icons";
 import EventDetails from "./eventDetailsPg";
-import { UserContext } from "../../App"
+import { UserContext } from "../../../App"
 import moment from "moment";
-import UserPage from "../../scenes/userPage";
+import UserPage from "../../../scenes/userPage";
 
 export function deleteUserEvent(eventId, setLoading, setUserEvents) {
   setLoading(true);

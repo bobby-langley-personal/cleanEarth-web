@@ -1,5 +1,14 @@
 import React, { useEffect, useState, useContext } from "react";
-import { List, Button, Table, Tag, Space, Layout, Row, Col, Typography, Divider, Image, Popconfirm, message } from "antd";
+import {
+  Button,
+  Layout,
+  Row,
+  Col,
+  Typography,
+  Divider,
+  Popconfirm,
+  message,
+} from "antd";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { useHistory } from "react-router-dom";
@@ -45,7 +54,6 @@ export default function EventDetails(props) {
     fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/event/" + eventId)
       .then((res) => res.json())
       .then((x) => setEvent(x))
-      // setLoading(false)
       .catch((e) => {
         console.log(e);
         setLoading(false);
