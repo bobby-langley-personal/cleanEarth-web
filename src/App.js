@@ -2,7 +2,6 @@ import React, { useState, createContext } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import firebase from "firebase";
 import { Col, Layout, Row } from "antd";
-
 import Home from "./scenes/Home";
 import Login from "./scenes/login";
 import Signup from "./scenes/signup";
