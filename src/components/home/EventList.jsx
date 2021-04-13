@@ -9,7 +9,6 @@ import {
 } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import { MailOutlined} from "@ant-design/icons";
-import EventDetails from "../event/eventDetailsPg";
 import { UserContext } from "../../App";
 import moment from "moment";
 import { PlusCircleTwoTone } from "@ant-design/icons";
@@ -36,8 +35,6 @@ export function deleteEvent(eventId, setLoading, setEvents, history) {
 
 function EventList({ events, setEvents, setLoading }) {
   const [favoritesList, setFavoritesList] = useState([]);
-  const [searchText, useSearchText] = useState("");
-  const [searchedColumn, useSearchedColumn] = useState("");
   let history = useHistory();
   const { user } = useContext(UserContext);
 

@@ -48,7 +48,6 @@ const EventForm = () => {
   const { user } = useContext(UserContext);
   const { mode, id } = useParams();
   const history = useHistory();
-
   const [fields, setFields] = useState();
 
   useEffect(() => {

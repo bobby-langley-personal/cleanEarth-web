@@ -2,7 +2,16 @@ import React, { useContext, useState } from "react";
 import firebase from "firebase";
 import FacebookLogin from "react-facebook-login";
 import { useHistory } from "react-router-dom";
-import { Form, Input, Button, Checkbox, Typography, Popconfirm, message, Row, Col, Tooltip } from "antd";
+import {
+  Form,
+  Input,
+  Button,
+  Checkbox,
+  Typography,
+  Row,
+  Col,
+  Tooltip,
+} from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import { UserContext } from "../App";
 
@@ -20,7 +29,11 @@ const tailLayout = {
     span: 16,
   },
 };
-const tooltip = <span> Remember... Logging in with Google provides a more customized experience.</span>
+const tooltip = (
+  <span>
+    Remember... Logging in with Google provides a more customized experience.
+  </span>
+);
 
 const responseFacebook = (response) => {
   console.log(response);
@@ -120,15 +133,20 @@ const Login = () => {
 
           <Form.Item {...tailLayout}>
             <Button type="primary" htmlType="submit">
-            <Tooltip placement="top" title={tooltip}>
-              Login
+              <Tooltip placement="top" title={tooltip}>
+                Login
               </Tooltip>
             </Button>
 
             {error && <Typography.Text type="danger">{error}</Typography.Text>}
           </Form.Item>
           <Form.Item {...tailLayout}>
-            <Button type="primary" icon={<GoogleOutlined />} loading={loading} onClick={() => loginWithGoogle(setUser)}>
+            <Button
+              type="primary"
+              icon={<GoogleOutlined />}
+              loading={loading}
+              onClick={() => loginWithGoogle(setUser)}
+            >
               Continue with Google
             </Button>
           </Form.Item>
