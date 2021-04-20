@@ -153,7 +153,7 @@ const EventForm = () => {
           ]}>
           <Input.TextArea  placeholder="Join us next weekend and lets make a difference... "/>
         </Form.Item>
-        {!user.displayName && (
+        {!user && !user.displayName && (
           <Form.Item
             label="Your Full Name: "
             name="yourFullName"

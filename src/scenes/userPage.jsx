@@ -69,7 +69,6 @@ function UserPage() {
     }
   }, [user]);
 
-  console.log({ userEvents });
   return (
     <div>
       <Header>
@@ -77,7 +76,7 @@ function UserPage() {
           width={75}
           height={75}
           src="error"
-          fallback={user.photoURL}
+          fallback={user && user.photoURL}
           alt="user photo"
           style={{ borderRadius: "50%", display: "flex" }}
         ></Image>
@@ -85,8 +84,8 @@ function UserPage() {
       <Divider> Your Profile </Divider>
       <Row justify="space-around">
         <Col span={14}>
-          <Title level={4}> {user.displayName}</Title> <br />
-          Linked email: &nbsp; {user.email}
+          <Title level={4}> {user && user.displayName}</Title> <br />
+          Linked email: &nbsp; {user && user.email}
           <br />
         </Col>
         <Col span={8}>

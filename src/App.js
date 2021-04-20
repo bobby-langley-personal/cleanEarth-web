@@ -44,7 +44,7 @@ function App() {
                   <Switch>
                     <Route path="/event/:eventId" component={EventDetails} />
                     <Route path="/event-form/:mode/:id?" component={EventForm} />
-                    <Route path="/user-events/" component={UserEventList} />
+                    <Route path="/user-events/" component={UserEventList} />  
                     <Route path="/user/" component={Userpage} />
                     <Route path="/login" component={Login} />
                     <Route path="/signup" component={Signup} />
