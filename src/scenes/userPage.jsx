@@ -97,11 +97,8 @@ function UserPage() {
           </Link>
         </Col>
         <Divider orientation="left"> Your Events </Divider>
-<>
-       
-    
+        
         {userEvents.map((userEvent) => {
-          console.log({ userEvent });
           return (
             <Col span={8}>
               <Card
@@ -134,7 +131,7 @@ function UserPage() {
           );
         })}
         )
-        </>
+        
       </Row>
     </div>
   );

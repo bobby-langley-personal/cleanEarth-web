@@ -10,17 +10,15 @@ function Home() {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(UserContext);
   useEffect(() => {
-    console.log(user)
     if (user) {
       setLoading(true);
       fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/events")
         .then((res) => res.json())
         .then((data) => {
-          setEvents(data); console.log('data', data)
+          setEvents(data); 
           setLoading(false);
         })
         .catch((e) => {
-          console.log(e)
           setLoading(false)
         });
     } else {
@@ -28,7 +26,6 @@ function Home() {
       setLoading(false);
     }
   }, [user]);
-  console.log(events)
 
   return (
 
