@@ -16,6 +16,7 @@ function Home() {
         .then((res) => res.json())
         .then((data) => {
           setEvents(data); 
+          console.log(data)
           setLoading(false);
         })
         .catch((e) => {

@@ -37,7 +37,6 @@ export const submitForm = (event, fields, setResponseMessage, user, history, mod
     .then((data) => {
       
         setLoading(false);
-        console.log({ data });
         if(callMethod === 'PATCH'){
         return (
           history.push(`/event/${id}`) && message("Event Updated.")
@@ -50,7 +49,6 @@ export const submitForm = (event, fields, setResponseMessage, user, history, mod
 };
 
 export function getSingleEvent(id, setEvent) {
-  console.log({ id });
   fetch(`https://us-central1-cleanearth-api.cloudfunctions.net/app/event/${id}`)
     .then((res) => res.json())
     .then((data) => setEvent(data))

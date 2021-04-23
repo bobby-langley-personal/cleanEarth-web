@@ -21,25 +21,7 @@ import {
 const { Title } = Typography;
 const { Header } = Layout;
 
-function deleteEvent(userEvent, user, setUserEvents, setLoading) {
-  {
-    setLoading(true) && <Spin></Spin>;
-  }
-  const API_URL = `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${user.uid}/${userEvent.id}`;
-  const params = {
-    method: "DELETE",
-  };
-  fetch(API_URL, params)
-    .then((res) => res.json())
-    .then((data) => {
-      setUserEvents(data);
-      setLoading(false);
-    })
-    .catch((err) => {
-      console.log("error updating item: ", err);
-      setLoading(false);
-    });
-}
+
 
 function UserPage() {
   const [userEvents, setUserEvents] = useState([]);
@@ -97,7 +79,7 @@ function UserPage() {
           </Link>
         </Col>
         <Divider orientation="left"> Your Events </Divider>
-        
+
         {userEvents.map((userEvent) => {
           return (
             <Col span={8}>

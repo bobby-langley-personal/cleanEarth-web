@@ -84,7 +84,6 @@ const EventForm = () => {
       <Form
         form={form}
         {...layout}
-        title="test"
         layout="horizontal"
         className="site-layout-content"
         fields={fields}
