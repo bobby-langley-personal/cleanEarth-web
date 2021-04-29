@@ -68,7 +68,6 @@ const EventForm = () => {
         date: event && moment(event.date),
         yourFullName: !user.displayName ? event && (event.yourFullName) : '',
       };
-
       form.setFieldsValue(initEvent);
     }
   }, [event]);

@@ -1,8 +1,6 @@
 import {message} from 'antd'
 export const submitForm = (event, fields, setResponseMessage, user, history, mode, id, setLoading) => {
 
-  const formPrompt = document.getElementById("formPrompt")
-  formPrompt.innerText="Form Submitted"
   const callEndpoint =
     mode === "update"
       ? `https://us-central1-cleanearth-api.cloudfunctions.net/app/events/${id}`

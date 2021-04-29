@@ -47,8 +47,6 @@ export default function EventDetails(props) {
   const { user } = useContext(UserContext);
   const { eventId } = props.match.params;
 
-  console.log(props.match.params.eventId);
-  console.log("propsss", props.match.params.eventId);
 
   useEffect(() => {
     fetch("https://us-central1-cleanearth-api.cloudfunctions.net/app/event/" + eventId)
